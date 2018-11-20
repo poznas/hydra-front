@@ -86,3 +86,6 @@ shellAppWorkspaces
 
 # Expo Client builds
 /client-builds
+
+# intel ij .idea
+.idea
