@@ -1,8 +1,9 @@
 import HomeScreen from '../screens/HomeScreen'
 import FeedScreen from '../screens/FeedScreen'
-import { createBottomTabNavigator } from 'react-navigation'
+import LoginScreen from '../screens/LoginScreen'
+import { createBottomTabNavigator, createSwitchNavigator } from 'react-navigation'
 
-export default createBottomTabNavigator(
+const TabNavigator = createBottomTabNavigator(
     {
       Home: {screen: HomeScreen},
       Feed: {screen: FeedScreen},
@@ -11,3 +12,14 @@ export default createBottomTabNavigator(
       initialRouteName: 'Home',
     }
 );
+
+
+export default createSwitchNavigator(
+    {
+      App: TabNavigator,
+      LoginScreen: LoginScreen,
+    },
+    {
+      initialRouteName: 'LoginScreen',
+    }
+)
