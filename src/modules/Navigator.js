@@ -1,15 +1,26 @@
 import HomeScreen from '../screens/HomeScreen'
 import FeedScreen from '../screens/FeedScreen'
 import LoginScreen from '../screens/LoginScreen'
-import { createBottomTabNavigator, createSwitchNavigator } from 'react-navigation'
+import CompanyWikiScreen from '../screens/CompanyWikiScreen'
+import { createBottomTabNavigator, createStackNavigator, createSwitchNavigator } from 'react-navigation'
 
+
+const StackNavigator = createStackNavigator(
+    {
+      Main: {screen: FeedScreen},
+      Detail: {screen: CompanyWikiScreen}
+    },
+    {
+      initialRouteName: 'Main'
+    }
+)
 const TabNavigator = createBottomTabNavigator(
     {
       Home: {screen: HomeScreen},
-      Feed: {screen: FeedScreen},
+      Feed: StackNavigator,
     },
     {
-      initialRouteName: 'Home',
+      initialRouteName: 'Feed',
     }
 );
 
@@ -20,6 +31,6 @@ export default createSwitchNavigator(
       LoginScreen: LoginScreen,
     },
     {
-      initialRouteName: 'LoginScreen',
+      initialRouteName: 'App',
     }
 )
