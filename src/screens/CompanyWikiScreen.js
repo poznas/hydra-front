@@ -18,4 +18,3 @@ class CompanyWikiScreen extends Component {
 }
 
 export default CompanyWikiScreen;
-// {this.props.params.item.name}

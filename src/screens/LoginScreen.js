@@ -5,6 +5,9 @@ import axios from 'axios';
 
 import {BASE_URL, IOS_CLIENT, ANDROID_CLIENT} from 'react-native-dotenv'
 
+import Storage from '../modules/AsyncStorage'
+const AUTH_TOKEN = 'authToken'
+
 class LoginScreen extends Component {
 
   signInWithGoogle = async() => {
@@ -16,23 +19,27 @@ class LoginScreen extends Component {
         scopes: ['profile', 'email']
       });
 
-      console.log(googleLoginResponse.type);
-      console.log('\n');
+      console.log(googleLoginResponse.type)
+      console.log('\n')
 
       if (googleLoginResponse.type === 'success'){
-        console.log(googleLoginResponse.idToken);
-        // TODO skonczyc, jak Poznas naprawi
 
-        // const url = [BASE_URL, '/auth/login'].join('');
-        // const params = {
-        //   headers: {
-        //     'X-ID-TOKEN': googleLoginResponse.idToken
-        //   }
-        // }
-        //
-        // const hydraLoginResponse = await axios.post(url, {}, params);
-        // console.log(hydraLoginResponse);
-        this.props.navigation.navigate('App');
+        const url = [BASE_URL, '/auth/login'].join('');
+        const params = {
+          headers: {
+            'X-ID-TOKEN': googleLoginResponse.idToken
+          }
+        }
+
+        const hydraLoginResponse = await axios.post(url, {}, params);
+
+        const token = hydraLoginResponse.headers.authorization
+        if (token){
+          console.log('calling store');
+          await Storage.storeItem(AUTH_TOKEN, token)
+          console.log('called store');
+          this.props.navigation.navigate('App')
+        }
       }
 
     } catch(e) {
