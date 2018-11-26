@@ -35,9 +35,9 @@ class LoginScreen extends Component {
 
         const token = hydraLoginResponse.headers.authorization
         if (token){
-          console.log('calling store');
+          console.log('calling store')
           await Storage.storeItem(AUTH_TOKEN, token)
-          console.log('called store');
+          console.log('called store')
           this.props.navigation.navigate('App')
         }
       }

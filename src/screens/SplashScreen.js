@@ -13,7 +13,8 @@ class SplashScreen extends Component {
       const token = await Storage.retrieveItem(AUTH_TOKEN);
       if (token) {
         console.log('token exists')
-        await Storage.clear()
+        // FOR TESTING
+        // await Storage.clear()
         this.props.navigation.navigate('App')
       } else {
         this.props.navigation.navigate('Login')
