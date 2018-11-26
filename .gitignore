@@ -89,3 +89,4 @@ shellAppWorkspaces
 
 # intel ij .idea
 .idea
+.env
