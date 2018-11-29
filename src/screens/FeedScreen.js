@@ -1,9 +1,7 @@
-import { StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import React, { Component } from 'react'
-import { Constants } from 'expo'
 
-import { List, ListItem, Button } from 'react-native-elements'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Header, List, ListItem } from 'react-native-elements'
 import TouchableScale from 'react-native-touchable-scale'
 
 const list = [
@@ -21,7 +19,6 @@ const list = [
 
 class FeedScreen extends Component {
 
-
   constructor(props) {
     super(props)
     this.renderPerson = this.renderPerson.bind(this)
@@ -30,7 +27,7 @@ class FeedScreen extends Component {
 
   onPress = (item) => {
     console.log(this.props.navigation)
-    this.props.navigation.navigate('Detail', {item: item})
+    this.props.navigation.navigate('Detail', { item: item })
   }
 
   renderPerson(item) {
@@ -38,7 +35,7 @@ class FeedScreen extends Component {
         key={item.name}
         title={item.name}
         subtitleNumberOfLines={3}
-        rightIcon={{uri: item.avatar_url}}
+        rightIcon={{ uri: item.avatar_url }}
         onPress={() => this.onPress(item)}
         component={TouchableScale}
         roundAvatar
@@ -52,23 +49,20 @@ class FeedScreen extends Component {
         this.renderPerson(p)
     ))
   }
-qq
+
   render() {
     return (
-        <View>
-        <List>
-          {this.renderPeople()}
-        </List>
-          <Button
-              icon={
-                <Icon
-                    name='arrow-right'
-                    size={15}
-                    color='white'
-                />
-              }
-              title='BUTTON WITH RIGHT ICON'
+        <View style={styles.container}>
+          <Header
+              // statusBarProps={{ barStyle: 'light-content' }}
+              centerComponent={{ text: 'Companies', style: {color: '#fff' } }}
+              backgroundColor={'#000000'}
           />
+          <ScrollView>
+            <List>
+              {this.renderPeople()}
+            </List>
+          </ScrollView>
         </View>
     )
   }
@@ -77,9 +71,8 @@ qq
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: 'black'
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
   }
 })
 export default FeedScreen
