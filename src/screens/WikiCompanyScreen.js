@@ -66,6 +66,7 @@ class WikiScreen extends Component {
   }
 
   render() {
+    console.log(this.props.navigation.state)
     const item = this.props.navigation.getParam('item', {});
     console.log(item);
     return (

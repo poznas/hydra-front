@@ -11,11 +11,12 @@ class SplashScreen extends Component {
   async componentDidMount() {
     try {
       const token = await Storage.retrieveItem(AUTH_TOKEN);
+      console.log(token, 'splash')
       if (token) {
         console.log('token exists')
         // FOR TESTING
         // await Storage.clear()
-        this.props.navigation.navigate('App')
+        this.props.navigation.navigate('App', {token: token})
       } else {
         this.props.navigation.navigate('Login')
       }

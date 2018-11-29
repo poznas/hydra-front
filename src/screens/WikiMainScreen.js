@@ -23,6 +23,16 @@ class WikiMainScreen extends Component {
     super(props)
     this.renderItem = this.renderItem.bind(this)
     this.renderList = this.renderList.bind(this)
+    this.state = {
+      token: ''
+    }
+  }
+
+  componentWillMount(){
+    console.log(this.props.navigation)
+    const accessToken = this.props.navigation.getParam('token', 'empty');
+    console.log(accessToken);
+    this.setState({token: accessToken})
   }
 
   onPress = (item) => {
@@ -51,6 +61,7 @@ class WikiMainScreen extends Component {
   }
 
   render() {
+    console.log(this.state.token, 'im token');
     return (
         <View style={styles.container}>
           <Header

@@ -6,7 +6,6 @@ import axios from 'axios';
 import {BASE_URL, IOS_CLIENT, ANDROID_CLIENT} from 'react-native-dotenv'
 
 import Storage from '../modules/AsyncStorage'
-const AUTH_TOKEN = 'authToken'
 
 class LoginScreen extends Component {
 
@@ -34,13 +33,13 @@ class LoginScreen extends Component {
         console.log('test')
         const response = await axios.get(url, params);
 
-        console.log(response);
         const token = response.headers.authorization
         if (token){
           console.log('calling store')
-          await Storage.storeItem(AUTH_TOKEN, token)
+          console.log(token);
+          await Storage.storeItem(token)
           console.log('called store')
-          this.props.navigation.navigate('App')
+          this.props.navigation.navigate('App', {token: token})
         }
       }
 
@@ -63,3 +62,5 @@ class LoginScreen extends Component {
   }
 }
 export default LoginScreen;
+
+
