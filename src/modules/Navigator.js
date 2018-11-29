@@ -1,7 +1,7 @@
 import HomeScreen from '../screens/HomeScreen'
-import FeedScreen from '../screens/FeedScreen'
+import WikiMainScreen from '../screens/WikiMainScreen'
 import LoginScreen from '../screens/LoginScreen'
-import WikiScreen from '../screens/WikiScreen'
+import WikiCompanyScreen from '../screens/WikiCompanyScreen'
 import SplashScreen from '../screens/SplashScreen'
 import FormScreen from '../screens/FormScreen'
 
@@ -9,8 +9,8 @@ import { createBottomTabNavigator, createStackNavigator, createSwitchNavigator }
 
 const StackNavigator = createStackNavigator(
     {
-      Main: {screen: FeedScreen},
-      Detail: {screen: WikiScreen},
+      Main: {screen: WikiMainScreen},
+      Detail: {screen: WikiCompanyScreen},
       Form: {screen: FormScreen}
     },
     {
@@ -26,7 +26,6 @@ const TabNavigator = createBottomTabNavigator(
       initialRouteName: 'Feed',
     }
 );
-
 
 export default createSwitchNavigator(
     {

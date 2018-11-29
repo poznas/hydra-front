@@ -45,25 +45,23 @@ const list = [
 class WikiScreen extends Component {
   constructor(props){
     super(props);
-
   }
 
-  renderPerson(item) {
+  renderItem(item) {
     return (< ListItem
         key={item.name}
         title={item.name}
         subtitle={item.description}
         subtitleNumberOfLines={6}
-        // onPress={() => this.onPress(item)}
         component={TouchableScale}
         roundAvatar
         avatar={{ uri: item.avatar_url }}
     />)
   }
 
-  renderPeople = (items) => {
+  renderList = (items) => {
     return items.map((p) => (
-        this.renderPerson(p)
+        this.renderItem(p)
     ))
   }
 
@@ -78,7 +76,7 @@ class WikiScreen extends Component {
           />
           <ScrollView>
           <List>
-            {this.renderPeople(list)}
+            {this.renderList(list)}
           </List>
           </ScrollView>
           <Button

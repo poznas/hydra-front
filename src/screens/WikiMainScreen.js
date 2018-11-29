@@ -17,12 +17,12 @@ const list = [
   },
 ]
 
-class FeedScreen extends Component {
+class WikiMainScreen extends Component {
 
   constructor(props) {
     super(props)
-    this.renderPerson = this.renderPerson.bind(this)
-    this.renderPeople = this.renderPeople.bind(this)
+    this.renderItem = this.renderItem.bind(this)
+    this.renderList = this.renderList.bind(this)
   }
 
   onPress = (item) => {
@@ -30,7 +30,7 @@ class FeedScreen extends Component {
     this.props.navigation.navigate('Detail', { item: item })
   }
 
-  renderPerson(item) {
+  renderItem(item) {
     return (< ListItem
         key={item.name}
         title={item.name}
@@ -44,9 +44,9 @@ class FeedScreen extends Component {
     />)
   }
 
-  renderPeople = () => {
+  renderList = () => {
     return list.map((p) => (
-        this.renderPerson(p)
+        this.renderItem(p)
     ))
   }
 
@@ -54,13 +54,12 @@ class FeedScreen extends Component {
     return (
         <View style={styles.container}>
           <Header
-              // statusBarProps={{ barStyle: 'light-content' }}
               centerComponent={{ text: 'Companies', style: {color: '#fff' } }}
               backgroundColor={'#000000'}
           />
           <ScrollView>
             <List>
-              {this.renderPeople()}
+              {this.renderList()}
             </List>
           </ScrollView>
         </View>
@@ -75,4 +74,4 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   }
 })
-export default FeedScreen
+export default WikiMainScreen
