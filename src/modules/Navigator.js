@@ -1,14 +1,14 @@
 import HomeScreen from '../screens/HomeScreen'
 import FeedScreen from '../screens/FeedScreen'
 import LoginScreen from '../screens/LoginScreen'
-import CompanyWikiScreen from '../screens/CompanyWikiScreen'
+import WikiScreen from '../screens/WikiScreen'
 import SplashScreen from '../screens/SplashScreen'
 import { createBottomTabNavigator, createStackNavigator, createSwitchNavigator } from 'react-navigation'
 
 const StackNavigator = createStackNavigator(
     {
       Main: {screen: FeedScreen},
-      Detail: {screen: CompanyWikiScreen}
+      Detail: {screen: WikiScreen}
     },
     {
       initialRouteName: 'Main'

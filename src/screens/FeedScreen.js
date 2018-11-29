@@ -1,8 +1,9 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import React, { Component } from 'react'
 import { Constants } from 'expo'
 
-import { List, ListItem } from 'react-native-elements'
+import { List, ListItem, Button } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/FontAwesome';
 import TouchableScale from 'react-native-touchable-scale'
 
 const list = [
@@ -27,7 +28,6 @@ class FeedScreen extends Component {
     this.renderPeople = this.renderPeople.bind(this)
   }
 
-// THIS IS THE NEW CHANGE. IT SHOULD BIND `this` TO THE PERSON
   onPress = (item) => {
     console.log(this.props.navigation)
     this.props.navigation.navigate('Detail', {item: item})
@@ -52,41 +52,26 @@ class FeedScreen extends Component {
         this.renderPerson(p)
     ))
   }
-
+qq
   render() {
     return (
+        <View>
         <List>
           {this.renderPeople()}
         </List>
+          <Button
+              icon={
+                <Icon
+                    name='arrow-right'
+                    size={15}
+                    color='white'
+                />
+              }
+              title='BUTTON WITH RIGHT ICON'
+          />
+        </View>
     )
   }
-
-  // renderRow ({ item }) {
-  //   console.log('rendering')
-  //   return (
-  //       <ListItem
-  //           key
-  //           onPress={() => console.log(item)}
-  //           component={TouchableScale}
-  //           roundAvatar
-  //           title={item.name}
-  //           subtitle={item.subtitle}
-  //           avatar={{uri:item.avatar_url}}
-  //       />
-  //   )
-  // }
-  //
-  // render () {
-  //   return (
-  //       <List>
-  //         <FlatList
-  //             data={list}
-  //             renderItem={this.renderRow}
-  //             keyExtractor={item => item.name}
-  //         />
-  //       </List>
-  //   )
-  // }
 }
 
 const styles = StyleSheet.create({

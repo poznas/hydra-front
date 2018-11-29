@@ -1,8 +1,7 @@
-
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import React, { Component } from 'react'
 
-class CompanyWikiScreen extends Component {
+class WikiScreen extends Component {
   constructor(props){
     super(props);
   }
@@ -17,4 +16,4 @@ class CompanyWikiScreen extends Component {
   }
 }
 
-export default CompanyWikiScreen;
+export default WikiScreen;

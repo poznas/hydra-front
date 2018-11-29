@@ -15,14 +15,6 @@ export default class List extends React.Component {
     console.log(item);
     return item.toString();
   }
-  // onEndReachedCalledDuringMomentum = false;
-  // onEndReached = () => {
-  //   if (!this.onEndReachedCalledDuringMomentum) {
-  //     this.props.onEndReached();
-  //     this.onEndReachedCalledDuringMomentum = true;
-  //   }
-  // };
-
 
   render(){
     return(

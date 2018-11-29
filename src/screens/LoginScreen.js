@@ -23,6 +23,7 @@ class LoginScreen extends Component {
       console.log('\n')
 
       if (googleLoginResponse.type === 'success'){
+        console.log('test')
 
         const url = [BASE_URL, '/auth/login'].join('');
         const params = {
@@ -30,10 +31,11 @@ class LoginScreen extends Component {
             'X-ID-TOKEN': googleLoginResponse.idToken
           }
         }
+        console.log('test')
+        const response = await axios.get(url, params);
 
-        const hydraLoginResponse = await axios.post(url, {}, params);
-
-        const token = hydraLoginResponse.headers.authorization
+        console.log(response);
+        const token = response.headers.authorization
         if (token){
           console.log('calling store')
           await Storage.storeItem(AUTH_TOKEN, token)
@@ -48,8 +50,6 @@ class LoginScreen extends Component {
   }
 
   render() {
-    // console.log(IOS_CLIENT);
-    // console.log(ANDROID_CLIENT);
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <Text>LoginScreen</Text>
