@@ -1,3 +1,7 @@
+ - wiki foundations
+ - full login flow
+ - navigation improvement
+ - dotenv setup
  - added navigation
  - linter setup
  - expo init hydra-front : empty template
