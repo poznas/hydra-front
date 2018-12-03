@@ -2,60 +2,44 @@ import { Text, View, ScrollView } from 'react-native'
 import React, { Component } from 'react'
 import { Button, Header, List, ListItem } from 'react-native-elements'
 import TouchableScale from 'react-native-touchable-scale'
+import axios from 'axios'
 
-const list = [
-  {
-    name: 'Daniel Poznanski',
-    avatar_url: 'https://polki.pl/foto/4_3_SMALL/pocieszny-maluch-czy-odwazny-obronca-poznaj-charakterystyke-jamnika-i-dowiedz-sie-jak-sie-nim-opiekowac-2389522.jpg',
-    description: 'Poznas bardzo lubi tam pracowac 10/10'
-  },
-  {
-    name: 'Józef Piłsudski',
-    avatar_url: 'https://pbs.twimg.com/profile_images/639599645925076994/7Egv8qXQ.jpg',
-    description: 'Difference between LinkedList and ArrayList \n What type of Sets exist in Java \n What is inheritance \n What is encapsulation \n What are abstract classes \n What is an interface'
-  },
-  {
-    name: 'Roman Dmowski',
-    avatar_url: 'https://pbs.twimg.com/profile_images/639599645925076994/7Egv8qXQ.jpg',
-    description: 'Difference between LinkedList and ArrayList \n What type of Sets exist in Java \n What is inheritance \n What is encapsulation \n What are abstract classes \n What is an interface'
-  },
-  {
-    name: 'Tadeusz Kosciuszko',
-    avatar_url: 'https://pbs.twimg.com/profile_images/639599645925076994/7Egv8qXQ.jpg',
-    description: 'Difference between LinkedList and ArrayList \n What type of Sets exist in Java \n What is inheritance \n What is encapsulation \n What are abstract classes \n What is an interface'
-  },
-  {
-    name: 'Michal Dziedzic4',
-    avatar_url: 'https://pbs.twimg.com/profile_images/639599645925076994/7Egv8qXQ.jpg',
-    description: 'Difference between LinkedList and ArrayList \n What type of Sets exist in Java \n What is inheritance \n What is encapsulation \n What are abstract classes \n What is an interface'
-  },
-  {
-    name: 'Bartosz Śliwa',
-    avatar_url: 'https://static1.squarespace.com/static/573b62e9746fb941c1458dcd/t/58bf1f27d1758e5d0c580379/1488921550603/who-we-are.jpg',
-    description: 'Michas bardzo lubi tam pracowac 10/10\nMichas bardzo lubi tam pracowac 10/10\nMichas bardzo lubi tam pracowac 10/10\nMichas bardzo lubi tam pracowac 10/10\nMichas bardzo lubi tam pracowac 10/10\nMichas bardzo lubi tam pracowac 10/10\nMichas bardzo lubi tam pracowac 10/10\nMichas bardzo lubi tam pracowac 10/10'
-  },
-  {
-    name: 'Ole Pierdole',
-    avatar_url: 'https://vignette.wikia.nocookie.net/pokemon/images/2/21/001Bulbasaur.png/revision/latest?cb=20140328190757',
-    description: 'Michas bardzo lubi tam pracowac 10/10'
-  },
-]
-
+import {BASE_URL} from 'react-native-dotenv'
 
 class WikiScreen extends Component {
   constructor(props){
-    super(props);
+    super(props)
+    this.state = {
+      item: {},
+      opinions: [],
+    }
+  }
+
+  async componentWillMount(){
+    const item = this.props.navigation.getParam('item', {})
+    console.log(item, 'wtf')
+    const url = [BASE_URL, '/wiki/recruitment/info/entries'].join('')
+    const params = {
+      body: { companyIds: [item.companyId] },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.props.token
+      }
+    }
+    const response = await axios.get(url, params);
+    const opinions = response.data.content
+    this.setState({item: item, opinions: opinions})
   }
 
   renderItem(item) {
     return (< ListItem
-        key={item.name}
-        title={item.name}
-        subtitle={item.description}
+        key={item.authorId}
+        title={item.username}
+        subtitle={item.content}
         subtitleNumberOfLines={6}
         component={TouchableScale}
         roundAvatar
-        avatar={{ uri: item.avatar_url }}
+        avatar={{ uri: item.userImageUrl }}
     />)
   }
 
@@ -66,18 +50,16 @@ class WikiScreen extends Component {
   }
 
   render() {
-    console.log(this.props.navigation.state)
-    const item = this.props.navigation.getParam('item', {});
-    console.log(item);
+    console.log(this.state, 'final state');
     return (
         <View style={{ flex: 1, justifyContent: 'space-between' }}>
           <Header
-              centerComponent={{ text: item.name, style: { color: '#fff' } }}
+              centerComponent={{ text: this.state.item.companyName, style: { color: '#fff' } }}
               backgroundColor={'#000000'}
           />
           <ScrollView>
           <List>
-            {this.renderList(list)}
+            {this.renderList(this.state.opinions)}
           </List>
           </ScrollView>
           <Button

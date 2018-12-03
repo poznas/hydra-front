@@ -1,6 +1,7 @@
 
 import { AsyncStorage, Text, View } from 'react-native'
 import React, { Component } from 'react'
+import Context from '../modules/Context'
 
 
 import Storage from '../modules/AsyncStorage'
@@ -8,15 +9,18 @@ const AUTH_TOKEN = 'authToken'
 
 class SplashScreen extends Component {
 
+  constructor(props){
+    super(props)
+  }
+
   async componentDidMount() {
     try {
       const token = await Storage.retrieveItem(AUTH_TOKEN);
-      console.log(token, 'splash')
       if (token) {
-        console.log('token exists')
+        await this.props.setToken(token);
         // FOR TESTING
         // await Storage.clear()
-        this.props.navigation.navigate('App', {token: token})
+        this.props.navigation.navigate('App');
       } else {
         this.props.navigation.navigate('Login')
       }
@@ -33,5 +37,6 @@ class SplashScreen extends Component {
     );
   }
 }
+SplashScreen.contextType = Context;
 
 export default SplashScreen;

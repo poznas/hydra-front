@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "axios-debug": "0.0.4",
     "expo": "31.0.5",
     "prop-types": "15.6.2",
     "react": "16.5.0",

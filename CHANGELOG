@@ -1,3 +1,6 @@
+ - forms foundation
+ - sync with API
+ - added context to store token
  - wiki foundations
  - full login flow
  - navigation improvement
