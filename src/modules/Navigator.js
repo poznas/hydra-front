@@ -13,7 +13,7 @@ const StackNavigator = createStackNavigator(
     {
       Main: {screen: wrapScreenWithContext(WikiMainScreen)},
       Detail: {screen: wrapScreenWithContext(WikiCompanyScreen)},
-      Form: {screen: FormScreen}
+      Form: {screen: wrapScreenWithContext(FormScreen)}
     },
     {
       initialRouteName: 'Main'

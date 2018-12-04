@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, View } from 'react-native'
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import uuid from 'uuid/v4'
 import { Header, List, ListItem } from 'react-native-elements'
 import TouchableScale from 'react-native-touchable-scale'
 
@@ -47,7 +48,7 @@ class WikiMainScreen extends Component {
 
   renderItem(item) {
     return (< ListItem
-        key={item.authorId}
+        key={uuid()}
         title={item.companyName}
         onPress={() => this.onPress(item)}
         component={TouchableScale}

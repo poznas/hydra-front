@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Button, Header, List, ListItem } from 'react-native-elements'
 import TouchableScale from 'react-native-touchable-scale'
 import axios from 'axios'
+import uuid from 'uuid/v4'
 
 import {BASE_URL} from 'react-native-dotenv'
 
@@ -12,12 +13,29 @@ class WikiScreen extends Component {
     this.state = {
       item: {},
       opinions: [],
+      returned: false,
     }
   }
 
+  async triggerRefresh(){
+    console.log('trigerred refresh')
+    const url = [BASE_URL, '/wiki/recruitment/info/entries'].join('')
+    const params = {
+      body: { companyIds: [this.state.item.companyId] },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.props.token
+      }
+    }
+    const response = await axios.get(url, params);
+    const opinions2 = response.data.content
+    this.setState({opinions: opinions2})
+
+  }
+
   async componentWillMount(){
+    console.log('mounting');
     const item = this.props.navigation.getParam('item', {})
-    console.log(item, 'wtf')
     const url = [BASE_URL, '/wiki/recruitment/info/entries'].join('')
     const params = {
       body: { companyIds: [item.companyId] },
@@ -33,7 +51,7 @@ class WikiScreen extends Component {
 
   renderItem(item) {
     return (< ListItem
-        key={item.authorId}
+        key={uuid()}
         title={item.username}
         subtitle={item.content}
         subtitleNumberOfLines={6}
@@ -43,6 +61,7 @@ class WikiScreen extends Component {
     />)
   }
 
+
   renderList = (items) => {
     return items.map((p) => (
         this.renderItem(p)
@@ -50,7 +69,7 @@ class WikiScreen extends Component {
   }
 
   render() {
-    console.log(this.state, 'final state');
+    const returned = this.props.navigation.getParam('returned', )
     return (
         <View style={{ flex: 1, justifyContent: 'space-between' }}>
           <Header
@@ -64,7 +83,7 @@ class WikiScreen extends Component {
           </ScrollView>
           <Button
               icon={{type:'font-awesome', name: 'plus-circle'}}
-              onPress={() => this.props.navigation.navigate('Form')}
+              onPress={() => this.props.navigation.navigate('Form', {companyId: this.state.item.companyId, onReturn: this.triggerRefresh.bind(this)})}
               backgroundColor={'#000000'}
           />
         </View>
