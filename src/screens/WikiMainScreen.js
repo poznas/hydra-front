@@ -21,8 +21,7 @@ class WikiMainScreen extends Component {
   }
 
   async componentWillMount() {
-    console.log(this.props.token, 'this props are important')
-    const url = [BASE_URL, '/wiki/recruitment/info/entries'].join('')
+    const url = [BASE_URL, '/register/company/companies?page=0&size=10'].join('')
 
     const params = {
       headers: {
@@ -31,7 +30,6 @@ class WikiMainScreen extends Component {
     }
     try {
       const response = await axios.get(url, params)
-      console.log(response.data, 'data')
       this.setState({
         token: this.props.token,
         list: response.data.content,
@@ -42,7 +40,7 @@ class WikiMainScreen extends Component {
   }
 
   onPress = (item) => {
-    console.log(this.props.navigation)
+    // console.log(item, 'item from onPress');
     this.props.navigation.navigate('Detail', { item: item })
   }
 
@@ -58,15 +56,12 @@ class WikiMainScreen extends Component {
   }
 
   renderList = () => {
-    console.log(this.state)
     return this.state.list.map((p) => (
-    // return list.map((p) => (
         this.renderItem(p)
     ))
   }
 
   render() {
-    console.log(this.state.token, 'im token')
     return (
         <View style={styles.container}>
           <Header
