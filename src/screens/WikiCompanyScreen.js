@@ -64,6 +64,7 @@ class WikiScreen extends Component {
         id = {item.id}
         upvotes = {item.upVotes}
         downvotes = {item.downVotes}
+        ratio = {item.authorReliabilityRatio}
         token = {this.props.token}
     />)
   }

@@ -74,6 +74,7 @@ class CustomListItem extends Component {
               key={uuid()}
               title={this.props.title}
               subtitle={this.props.subtitle}
+              rightTitle={this.props.ratio.toString()}
               subtitleNumberOfLines={6}
               component={TouchableScale}
               hideChevron={true}

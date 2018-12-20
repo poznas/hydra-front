@@ -55,7 +55,6 @@ class LoginScreen extends Component {
           <Button
               title={'Dzien dobry panie Poznanski'}
               onPress={() => this.signInWithGoogle()}
-              // onPress={() => this.props.navigation.navigate('App')}
           />
         </View>
     );
