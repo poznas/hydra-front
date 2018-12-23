@@ -1,11 +1,10 @@
 import {View} from 'react-native'
 import React, {Component} from 'react'
-import axios from 'axios'
 
-import {BASE_URL} from 'react-native-dotenv'
 import {Button, FormInput, FormLabel} from 'react-native-elements'
 import Picker from 'react-native-picker-select'
 import {AVAILABLE_LANGUAGES, AVAILABLE_RECRUITMENT_TYPES} from '../../utils/constants'
+import {BackendConnector} from "../../connectors/BackendConnector"
 
 class AddWikiInfoScreen extends Component {
 
@@ -28,24 +27,14 @@ class AddWikiInfoScreen extends Component {
   }
 
   addInfo = async () => {
-    const url = [BASE_URL, '/wiki/recruitment/info/add'].join('')
     const body = {
       companyId: this.state.companyId,
       recruitmentType: this.state.recruitmentType,
       content: this.state.content,
       programmingLanguage: this.state.language
     }
-    const params = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: this.props.token
-      }
-    }
-    console.log(body)
-    console.log(url)
-    console.log(params)
-    console.log('from has been sent')
-    await axios.post(url, body, params).catch(err => console.log(err))
+
+    await BackendConnector.addWikiInfo(this.props.token, body)
     this.props.navigation.state.params.onReturn()
     this.props.navigation.goBack()
   }

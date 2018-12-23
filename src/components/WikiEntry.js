@@ -3,8 +3,7 @@ import React, {Component} from 'react'
 import {Button, ListItem} from 'react-native-elements'
 import uuid from 'uuid/v4'
 import TouchableScale from 'react-native-touchable-scale'
-import axios from 'axios'
-import {BASE_URL} from 'react-native-dotenv'
+import {BackendConnector} from "../connectors/BackendConnector"
 
 class WikiEntry extends Component {
   constructor(props) {
@@ -51,20 +50,11 @@ class WikiEntry extends Component {
         }
       }
     }
-
-
-    const url = [BASE_URL, '/wiki/recruitment/info/vote'].join('')
     const data = {
       informationId: id,
       vote: value
     }
-    const params = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: this.props.token
-      }
-    }
-    await axios.post(url, data, params)
+    await BackendConnector.voteWikiInfo(this.props.token, data)
   }
 
   render() {
@@ -74,7 +64,7 @@ class WikiEntry extends Component {
           key={uuid()}
           title={this.props.title}
           subtitle={this.props.subtitle}
-          rightTitle={this.props.ratio.toString()}
+          rightTitle={Number(this.props.ratio).toFixed(2)}
           subtitleNumberOfLines={6}
           component={TouchableScale}
           hideChevron={true}

@@ -1,11 +1,11 @@
 import {Button, View} from 'react-native'
 import React, {Component} from 'react'
 import {Google} from 'expo'
-import axios from 'axios';
 
-import {ANDROID_CLIENT, BASE_URL, IOS_CLIENT} from 'react-native-dotenv'
+import {ANDROID_CLIENT, IOS_CLIENT} from 'react-native-dotenv'
 
 import Storage from '../modules/AsyncStorage'
+import {LoginConnector} from "../connectors/LoginConnector"
 
 class LoginScreen extends Component {
 
@@ -16,27 +16,18 @@ class LoginScreen extends Component {
         androidClientId: ANDROID_CLIENT,
         iosClientId: IOS_CLIENT,
         scopes: ['profile', 'email']
-      });
+      })
 
       console.log(googleLoginResponse.type)
       console.log('\n')
 
       if (googleLoginResponse.type === 'success') {
-        console.log('test')
-
-        const url = [BASE_URL, '/auth/login'].join('');
-        const params = {
-          headers: {
-            'X-ID-TOKEN': googleLoginResponse.idToken
-          }
-        }
-        console.log('test')
-        const response = await axios.get(url, params);
-
+        const response = await LoginConnector.login(googleLoginResponse.idToken)
         const token = response.headers.authorization
+
         if (token) {
           console.log('calling store')
-          console.log(token);
+          console.log(token)
           await Storage.storeItem(token)
           console.log('called store')
           this.props.navigation.navigate('App', {token: token})
@@ -44,7 +35,7 @@ class LoginScreen extends Component {
       }
 
     } catch (e) {
-      return {error: true};
+      return {error: true}
     }
   }
 
@@ -56,10 +47,10 @@ class LoginScreen extends Component {
           onPress={() => this.signInWithGoogle()}
         />
       </View>
-    );
+    )
   }
 }
 
-export default LoginScreen;
+export default LoginScreen
 
 

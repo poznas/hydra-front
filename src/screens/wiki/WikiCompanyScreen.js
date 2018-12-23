@@ -1,12 +1,11 @@
 import {ScrollView, StyleSheet, View} from 'react-native'
 import React, {Component} from 'react'
-import axios from 'axios'
 
 import uuid from 'uuid/v4'
 import {Header, List, ListItem} from 'react-native-elements'
 import TouchableScale from 'react-native-touchable-scale'
 
-import {BASE_URL} from 'react-native-dotenv'
+import {BackendConnector} from "../../connectors/BackendConnector"
 
 class WikiCompanyScreen extends Component {
 
@@ -21,28 +20,18 @@ class WikiCompanyScreen extends Component {
   }
 
   async componentWillMount() {
-    const url = [BASE_URL, '/register/company/companies?page=0&size=10'].join('')
-
-    const params = {
-      headers: {
-        'Authorization': this.props.token
-      }
-    }
     try {
-      const response = await axios.get(url, params)
+      const response = await BackendConnector.getCompanies(this.props.token)
       this.setState({
         token: this.props.token,
-        list: response.data.content,
+        list: response.content
       })
     } catch (e) {
       console.log(e)
     }
   }
 
-  onPress = (item) => {
-    // console.log(item, 'item from onPress');
-    this.props.navigation.navigate('Detail', {item: item})
-  }
+  onPress = (item) => this.props.navigation.navigate('Detail', {company: item})
 
   renderItem(item) {
     return (< ListItem
