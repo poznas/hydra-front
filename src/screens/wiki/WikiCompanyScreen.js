@@ -1,6 +1,6 @@
 import { ScrollView, View } from 'react-native'
 import React, { Component } from 'react'
-import CustomListItem from '../components/CustomListItem'
+import CustomListItem from '../../components/CustomListItem'
 import { Button, Header, List, ListItem } from 'react-native-elements'
 import TouchableScale from 'react-native-touchable-scale'
 import axios from 'axios'

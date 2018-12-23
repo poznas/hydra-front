@@ -19,7 +19,7 @@ class SplashScreen extends Component {
       if (token) {
         await this.props.setToken(token);
         // FOR TESTING
-        // await Storage.clear()
+        await Storage.clear()
         this.props.navigation.navigate('App');
       } else {
         this.props.navigation.navigate('Login')

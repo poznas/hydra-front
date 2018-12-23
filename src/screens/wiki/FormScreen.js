@@ -5,64 +5,7 @@ import axios from 'axios'
 import { BASE_URL } from 'react-native-dotenv'
 import { Button, FormInput, FormLabel } from 'react-native-elements'
 import Picker from 'react-native-picker-select'
-
-const AVAILABLE_LANGUAGES = [
-  {
-    label: 'Java',
-    value: 'JAVA'
-  },
-  {
-    label: 'C++',
-    value: 'CPP'
-  },
-  {
-    label: 'Scala',
-    value: 'SCALA'
-  },
-  {
-    label: 'PHP',
-    value: 'PHP'
-  },
-  {
-    label: 'Ruby',
-    value: 'RUBY'
-  },
-  {
-    label: 'Python',
-    value: 'PYTHON'
-  },
-  {
-    label: 'JavaScript',
-    value: 'JAVASCRIPT'
-  },
-  {
-    label: 'Groovy',
-    value: 'GROOVY'
-  },
-  {
-    label: 'C',
-    value: 'C'
-  },
-  {
-    label: 'Objective C',
-    value: 'OBJECTIVE_C'
-  },
-  {
-    label: 'C#',
-    value: 'C_SHARP'
-  },
-]
-
-const AVAILABLE_RECRUITMENT_TYPES = [
-  {
-    label: 'Test',
-    value: 'TEST'
-  },
-  {
-    label: 'Interview',
-    value: 'INTERVIEW'
-  },
-    ]
+import { AVAILABLE_LANGUAGES, AVAILABLE_RECRUITMENT_TYPES } from '../../utils/constants'
 
 class FormScreen extends Component {
 
@@ -79,7 +22,7 @@ class FormScreen extends Component {
 
   componentWillMount() {
     const companyId = this.props.navigation.getParam('companyId', '')
-    console.log(this.props.navigation, 'nav');
+    console.log(this.props.navigation, 'nav')
     // const refreshState = this.props.navigation.getParam('onReturn', () => console.log('couldnt find param'))
     console.log(companyId)
     this.setState({ companyId: companyId })
@@ -104,8 +47,8 @@ class FormScreen extends Component {
     console.log(params)
     console.log('from has been sent')
     await axios.post(url, body, params).catch(err => console.log(err))
-    this.props.navigation.state.params.onReturn();
-    this.props.navigation.goBack();
+    this.props.navigation.state.params.onReturn()
+    this.props.navigation.goBack()
   }
 
   render() {
