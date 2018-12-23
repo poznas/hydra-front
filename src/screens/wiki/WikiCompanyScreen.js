@@ -1,105 +1,88 @@
-import {ScrollView, View} from 'react-native'
+import {ScrollView, StyleSheet, View} from 'react-native'
 import React, {Component} from 'react'
-import CustomListItem from '../../components/CustomListItem'
-import {Button, Header, List} from 'react-native-elements'
 import axios from 'axios'
+
 import uuid from 'uuid/v4'
+import {Header, List, ListItem} from 'react-native-elements'
+import TouchableScale from 'react-native-touchable-scale'
 
 import {BASE_URL} from 'react-native-dotenv'
 
-class WikiScreen extends Component {
+class WikiCompanyScreen extends Component {
+
   constructor(props) {
     super(props)
+    this.renderItem = this.renderItem.bind(this)
+    this.renderList = this.renderList.bind(this)
     this.state = {
-      item: {},
-      opinions: [],
-      returned: false,
+      token: '',
+      list: [],
     }
-  }
-
-  async triggerRefresh() {
-    console.log('trigerred refresh')
-    const url = [BASE_URL, '/wiki/recruitment/info/entries'].join('')
-    const data = {companyIds: [this.state.item.companyId]}
-    const params = {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-HTTP-Method-Override': 'GET',
-        Authorization: this.props.token
-      }
-    }
-    console.log(this.state.item, 'this.state.item from trigger ref')
-    const response = await axios.post(url, data, params)
-    const opinions2 = response.data.content
-    console.log(opinions2, 'axios ops')
-    this.setState({opinions: opinions2})
-
   }
 
   async componentWillMount() {
-    const item = this.props.navigation.getParam('item', {})
-    // console.log(item.companyId, 'compid');
-    // console.log('mounting');
-    const url = [BASE_URL, '/wiki/recruitment/info/entries'].join('')
-    const data = {companyIds: [item.companyId]}
+    const url = [BASE_URL, '/register/company/companies?page=0&size=10'].join('')
+
     const params = {
       headers: {
-        'Content-Type': 'application/json',
-        'X-HTTP-Method-Override': 'GET',
-        Authorization: this.props.token
+        'Authorization': this.props.token
       }
     }
-    const response = await axios.post(url, data, params)
-    const opinions = response.data.content
-    console.log(opinions, 'axios opinions')
-    this.setState({item: item, opinions: opinions})
+    try {
+      const response = await axios.get(url, params)
+      this.setState({
+        token: this.props.token,
+        list: response.data.content,
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  onPress = (item) => {
+    // console.log(item, 'item from onPress');
+    this.props.navigation.navigate('Detail', {item: item})
   }
 
   renderItem(item) {
-    return (< CustomListItem
+    return (< ListItem
       key={uuid()}
-      title={item.username}
-      subtitle={item.content}
-      id={item.id}
-      upvotes={item.upVotes}
-      downvotes={item.downVotes}
-      ratio={item.authorReliabilityRatio}
-      token={this.props.token}
+      title={item.companyName}
+      onPress={() => this.onPress(item)}
+      component={TouchableScale}
+      roundAvatar
+      chevronColor={'red'}
     />)
   }
 
-  renderList = (items) => {
-    return items.map((p) => (
+  renderList = () => {
+    return this.state.list.map((p) => (
       this.renderItem(p)
     ))
   }
 
   render() {
     return (
-      <View style={{flex: 1, justifyContent: 'space-between'}}>
+      <View style={styles.container}>
         <Header
-          centerComponent={{
-            text: this.state.item.companyName,
-            style: {color: '#fff'}
-          }}
+          centerComponent={{text: 'Companies', style: {color: '#fff'}}}
           backgroundColor={'#000000'}
         />
         <ScrollView>
           <List>
-            {this.renderList(this.state.opinions)}
+            {this.renderList()}
           </List>
         </ScrollView>
-        <Button
-          icon={{type: 'font-awesome', name: 'plus-circle'}}
-          onPress={() => this.props.navigation.navigate('Form', {
-            companyId: this.state.item.companyId,
-            onReturn: this.triggerRefresh.bind(this)
-          })}
-          backgroundColor={'#000000'}
-        />
       </View>
     )
   }
 }
 
-export default WikiScreen
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  }
+})
+export default WikiCompanyScreen

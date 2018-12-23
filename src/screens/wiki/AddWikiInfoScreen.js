@@ -7,7 +7,7 @@ import {Button, FormInput, FormLabel} from 'react-native-elements'
 import Picker from 'react-native-picker-select'
 import {AVAILABLE_LANGUAGES, AVAILABLE_RECRUITMENT_TYPES} from '../../utils/constants'
 
-class FormScreen extends Component {
+class AddWikiInfoScreen extends Component {
 
   constructor(props) {
     super(props)
@@ -23,7 +23,6 @@ class FormScreen extends Component {
   componentWillMount() {
     const companyId = this.props.navigation.getParam('companyId', '')
     console.log(this.props.navigation, 'nav')
-    // const refreshState = this.props.navigation.getParam('onReturn', () => console.log('couldnt find param'))
     console.log(companyId)
     this.setState({companyId: companyId})
   }
@@ -82,4 +81,4 @@ class FormScreen extends Component {
   }
 }
 
-export default FormScreen
+export default AddWikiInfoScreen

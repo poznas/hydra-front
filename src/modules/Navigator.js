@@ -1,9 +1,8 @@
 import JobMainScreen from '../screens/job/JobMainScreen'
-import WikiMainScreen from '../screens/wiki/WikiMainScreen'
 import LoginScreen from '../screens/LoginScreen'
-import WikiCompanyScreen from '../screens/wiki/WikiCompanyScreen'
+import WikiCompanyScreen from '../screens/wiki/WikiScreen'
 import SplashScreen from '../screens/SplashScreen'
-import FormScreen from '../screens/wiki/FormScreen'
+import AddWikiInfoScreen from '../screens/wiki/AddWikiInfoScreen'
 import wrapScreenWithContext from '../utils/wrapScreenWithContext'
 
 
@@ -13,9 +12,9 @@ import AddJobScreen from '../screens/job/AddJobScreen'
 
 const WikiStackNavigator = createStackNavigator(
   {
-    Main: {screen: wrapScreenWithContext(WikiMainScreen)},
+    Main: {screen: wrapScreenWithContext(WikiCompanyScreen)},
     Detail: {screen: wrapScreenWithContext(WikiCompanyScreen)},
-    Form: {screen: wrapScreenWithContext(FormScreen)}
+    Form: {screen: wrapScreenWithContext(AddWikiInfoScreen)}
   },
   {
     initialRouteName: 'Main'

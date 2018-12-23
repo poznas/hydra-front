@@ -6,48 +6,48 @@ import TouchableScale from 'react-native-touchable-scale'
 import axios from 'axios'
 import {BASE_URL} from 'react-native-dotenv'
 
-class CustomListItem extends Component {
+class WikiEntry extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      upvotes: 0,
-      downvotes: 0,
-      upvotedAlready: false,
-      downvotedAlready: false
+      upVotes: 0,
+      downVotes: 0,
+      upVotedAlready: false,
+      downVotedAlready: false
     }
   }
 
   componentWillMount() {
     this.setState(
-      {upvotes: this.props.upvotes, downvotes: this.props.downvotes})
+      {upVotes: this.props.upVotes, downVotes: this.props.downVotes})
   }
 
   vote = async (id, value) => {
     if (value === 'UP') {
-      if (!this.state.upvotedAlready) {
-        if (this.state.downvotedAlready) {
+      if (!this.state.upVotedAlready) {
+        if (this.state.downVotedAlready) {
           this.setState({
-            upvotes: this.state.upvotes + 1,
-            downvotes: this.state.downvotes - 1,
-            upvotedAlready: true,
-            downvotedAlready: false
+            upVotes: this.state.upVotes + 1,
+            downVotes: this.state.downVotes - 1,
+            upVotedAlready: true,
+            downVotedAlready: false
           })
         }
         else {
-          this.setState({upvotes: this.state.upvotes + 1, upvotedAlready: true})
+          this.setState({upVotes: this.state.upVotes + 1, upVotedAlready: true})
         }
       }
     } else {
-      if (!this.state.downvotedAlready) {
-        if (this.state.upvotedAlready) {
+      if (!this.state.downVotedAlready) {
+        if (this.state.upVotedAlready) {
           this.setState({
-            upvotes: this.state.upvotes - 1,
-            downvotes: this.state.downvotes + 1,
-            downvotedAlready: true,
-            upvotedAlready: false
+            upVotes: this.state.upVotes - 1,
+            downVotes: this.state.downVotes + 1,
+            downVotedAlready: true,
+            upVotedAlready: false
           })
         } else {
-          this.setState({downvotes: this.state.downvotes + 1, downvotedAlready: true})
+          this.setState({downVotes: this.state.downVotes + 1, downVotedAlready: true})
         }
       }
     }
@@ -91,7 +91,7 @@ class CustomListItem extends Component {
                     name: 'thumbs-up',
                     color: 'white'
                   }}
-                  title={this.state.upvotes.toString()}/>
+                  title={this.state.upVotes.toString()}/>
           <Button buttonStyle={{backgroundColor: 'red', width: 60}}
                   onPress={() => this.vote(this.props.id, 'DOWN')}
                   icon={{
@@ -99,7 +99,7 @@ class CustomListItem extends Component {
                     name: 'thumbs-down',
                     color: 'white'
                   }}
-                  title={this.state.downvotes.toString()}
+                  title={this.state.downVotes.toString()}
           />
         </View>
       </View>
@@ -107,5 +107,5 @@ class CustomListItem extends Component {
   }
 }
 
-export default CustomListItem
+export default WikiEntry
 
