@@ -1,4 +1,4 @@
-import JobMainScreen from '../screens/job/JobMainScreen'
+import JobScreen from '../screens/job/JobScreen'
 import LoginScreen from '../screens/LoginScreen'
 import WikiCompanyScreen from "../screens/wiki/WikiCompanyScreen"
 import WikiScreen from '../screens/wiki/WikiScreen'
@@ -24,7 +24,7 @@ const WikiStackNavigator = createStackNavigator(
 
 const JobStackNavigator = createStackNavigator(
   {
-    Main: {screen: wrapScreenWithContext(JobMainScreen)},
+    Main: {screen: wrapScreenWithContext(JobScreen)},
     Detail: {screen: wrapScreenWithContext(JobDetailsScreen)},
     Form: {screen: wrapScreenWithContext(AddJobScreen)}
   },

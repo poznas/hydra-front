@@ -10,7 +10,7 @@ class JobDetailsScreen extends Component {
         <Text>20000 PLN</Text>
         <Text>Job Description</Text>
         <Text>Bla bla bla, fajna praca jest, 10/10</Text>
-        <Button title={'ja bede wysylac do aplikowania'} onPress={() => this.props.navigation.navigate('')}/>
+        <Button title={'TODO: -> CreateReferralScreen'} onPress={() => this.props.navigation.navigate('')}/>
       </View>
     );
   }

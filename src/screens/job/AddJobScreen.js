@@ -51,7 +51,7 @@ class AddJobScreen extends Component {
           console.log(`${value} has been selected`)
         }} items={AVAILABLE_LANGUAGES}/>
 
-        <Button onPress={this.addInfo}/>
+        <Button onPress={console.log("")}/>
       </View>
     )
   }

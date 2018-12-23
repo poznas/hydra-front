@@ -3,7 +3,7 @@ import {View} from 'react-native'
 
 import {FormInput, FormLabel} from 'react-native-elements'
 
-class ApplyScreen extends React.Component {
+class ApplyReferralScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -30,6 +30,6 @@ class ApplyScreen extends React.Component {
   }
 }
 
-export default ApplyScreen;
+export default ApplyReferralScreen;
 
 
