@@ -1,7 +1,6 @@
-
-import { StyleSheet, Text, View } from 'react-native'
-import React, { Component } from 'react'
-import { Button, FormInput, FormLabel } from 'react-native-elements'
+import {View} from 'react-native'
+import React, {Component} from 'react'
+import {Button, FormInput, FormLabel} from 'react-native-elements'
 import Picker from "react-native-picker-select"
 import {AVAILABLE_LANGUAGES} from '../../utils/constants'
 
@@ -20,40 +19,40 @@ class AddJobScreen extends Component {
 
   render() {
     return (
-        <View style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}>
+      <View style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
 
-          <FormLabel>Job Description</FormLabel>
-          <FormInput onChangeText={(text) => this.setState({ jobDescription: text })}/>
+        <FormLabel>Job Description</FormLabel>
+        <FormInput onChangeText={(text) => this.setState({jobDescription: text})}/>
 
-          <FormLabel>Minimal Salary</FormLabel>
-          <FormInput onChangeText={(text) => this.setState({ minSalary: text })}/>
+        <FormLabel>Minimal Salary</FormLabel>
+        <FormInput onChangeText={(text) => this.setState({minSalary: text})}/>
 
-          <FormLabel>Maximal Salary</FormLabel>
-          <FormInput onChangeText={(text) => this.setState({ maxSalary: text })}/>
+        <FormLabel>Maximal Salary</FormLabel>
+        <FormInput onChangeText={(text) => this.setState({maxSalary: text})}/>
 
-          <FormLabel> Programming Languages </FormLabel>
-          <Picker onValueChange={(value) => {
-            console.log(value)
-            this.setState({ language1: value })
-            console.log(`${value} has been selected`)
-          }} items={AVAILABLE_LANGUAGES}/>
-          <Picker onValueChange={(value) => {
-            console.log(value)
-            this.setState({ language2: value })
-            console.log(`${value} has been selected`)
-          }} items={AVAILABLE_LANGUAGES}/>
-          <Picker onValueChange={(value) => {
-            console.log(value)
-            this.setState({ language3: value })
-            console.log(`${value} has been selected`)
-          }} items={AVAILABLE_LANGUAGES}/>
+        <FormLabel> Programming Languages </FormLabel>
+        <Picker onValueChange={(value) => {
+          console.log(value)
+          this.setState({language1: value})
+          console.log(`${value} has been selected`)
+        }} items={AVAILABLE_LANGUAGES}/>
+        <Picker onValueChange={(value) => {
+          console.log(value)
+          this.setState({language2: value})
+          console.log(`${value} has been selected`)
+        }} items={AVAILABLE_LANGUAGES}/>
+        <Picker onValueChange={(value) => {
+          console.log(value)
+          this.setState({language3: value})
+          console.log(`${value} has been selected`)
+        }} items={AVAILABLE_LANGUAGES}/>
 
-          <Button onPress={this.addInfo}/>
-        </View>
+        <Button onPress={this.addInfo}/>
+      </View>
     )
   }
 }

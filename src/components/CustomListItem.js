@@ -1,10 +1,10 @@
-import { View } from 'react-native'
-import React, { Component } from 'react'
-import { Button, ListItem } from 'react-native-elements'
+import {View} from 'react-native'
+import React, {Component} from 'react'
+import {Button, ListItem} from 'react-native-elements'
 import uuid from 'uuid/v4'
 import TouchableScale from 'react-native-touchable-scale'
 import axios from 'axios'
-import { BASE_URL } from 'react-native-dotenv'
+import {BASE_URL} from 'react-native-dotenv'
 
 class CustomListItem extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class CustomListItem extends Component {
 
   componentWillMount() {
     this.setState(
-        { upvotes: this.props.upvotes, downvotes: this.props.downvotes })
+      {upvotes: this.props.upvotes, downvotes: this.props.downvotes})
   }
 
   vote = async (id, value) => {
@@ -34,7 +34,7 @@ class CustomListItem extends Component {
           })
         }
         else {
-          this.setState({ upvotes: this.state.upvotes + 1, upvotedAlready: true })
+          this.setState({upvotes: this.state.upvotes + 1, upvotedAlready: true})
         }
       }
     } else {
@@ -47,7 +47,7 @@ class CustomListItem extends Component {
             upvotedAlready: false
           })
         } else {
-          this.setState({ downvotes: this.state.downvotes + 1, downvotedAlready: true })
+          this.setState({downvotes: this.state.downvotes + 1, downvotedAlready: true})
         }
       }
     }
@@ -69,40 +69,40 @@ class CustomListItem extends Component {
 
   render() {
     return (
-        <View style={{ flex: 1, }}>
-          <ListItem
-              key={uuid()}
-              title={this.props.title}
-              subtitle={this.props.subtitle}
-              rightTitle={this.props.ratio.toString()}
-              subtitleNumberOfLines={6}
-              component={TouchableScale}
-              hideChevron={true}
+      <View style={{flex: 1,}}>
+        <ListItem
+          key={uuid()}
+          title={this.props.title}
+          subtitle={this.props.subtitle}
+          rightTitle={this.props.ratio.toString()}
+          subtitleNumberOfLines={6}
+          component={TouchableScale}
+          hideChevron={true}
+        />
+        <View style={{
+          flex: 1,
+          flexDirection: 'row',
+          justifyContent: 'center'
+        }}>
+          <Button buttonStyle={{backgroundColor: 'green', width: 60}}
+                  onPress={() => this.vote(this.props.id, 'UP')}
+                  icon={{
+                    type: 'font-awesome',
+                    name: 'thumbs-up',
+                    color: 'white'
+                  }}
+                  title={this.state.upvotes.toString()}/>
+          <Button buttonStyle={{backgroundColor: 'red', width: 60}}
+                  onPress={() => this.vote(this.props.id, 'DOWN')}
+                  icon={{
+                    type: 'font-awesome',
+                    name: 'thumbs-down',
+                    color: 'white'
+                  }}
+                  title={this.state.downvotes.toString()}
           />
-          <View style={{
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'center'
-          }}>
-            <Button buttonStyle={{ backgroundColor: 'green', width: 60 }}
-                    onPress={() => this.vote(this.props.id, 'UP')}
-                    icon={{
-                      type: 'font-awesome',
-                      name: 'thumbs-up',
-                      color: 'white'
-                    }}
-                    title={this.state.upvotes.toString()}/>
-            <Button buttonStyle={{ backgroundColor: 'red', width: 60 }}
-                    onPress={() => this.vote(this.props.id, 'DOWN')}
-                    icon={{
-                      type: 'font-awesome',
-                      name: 'thumbs-down',
-                      color: 'white'
-                    }}
-                    title={this.state.downvotes.toString()}
-            />
-          </View>
         </View>
+      </View>
     )
   }
 }

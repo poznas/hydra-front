@@ -1,9 +1,9 @@
-import { ScrollView, StyleSheet, View } from 'react-native'
-import React, { Component } from 'react'
+import {ScrollView, StyleSheet, View} from 'react-native'
+import React, {Component} from 'react'
 import axios from 'axios'
 
 import uuid from 'uuid/v4'
-import { Header, List, ListItem } from 'react-native-elements'
+import {Header, List, ListItem} from 'react-native-elements'
 import TouchableScale from 'react-native-touchable-scale'
 
 import {BASE_URL} from 'react-native-dotenv'
@@ -41,39 +41,39 @@ class WikiMainScreen extends Component {
 
   onPress = (item) => {
     // console.log(item, 'item from onPress');
-    this.props.navigation.navigate('Detail', { item: item })
+    this.props.navigation.navigate('Detail', {item: item})
   }
 
   renderItem(item) {
     return (< ListItem
-        key={uuid()}
-        title={item.companyName}
-        onPress={() => this.onPress(item)}
-        component={TouchableScale}
-        roundAvatar
-        chevronColor={'red'}
+      key={uuid()}
+      title={item.companyName}
+      onPress={() => this.onPress(item)}
+      component={TouchableScale}
+      roundAvatar
+      chevronColor={'red'}
     />)
   }
 
   renderList = () => {
     return this.state.list.map((p) => (
-        this.renderItem(p)
+      this.renderItem(p)
     ))
   }
 
   render() {
     return (
-        <View style={styles.container}>
-          <Header
-              centerComponent={{ text: 'Companies', style: { color: '#fff' } }}
-              backgroundColor={'#000000'}
-          />
-          <ScrollView>
-            <List>
-              {this.renderList()}
-            </List>
-          </ScrollView>
-        </View>
+      <View style={styles.container}>
+        <Header
+          centerComponent={{text: 'Companies', style: {color: '#fff'}}}
+          backgroundColor={'#000000'}
+        />
+        <ScrollView>
+          <List>
+            {this.renderList()}
+          </List>
+        </ScrollView>
+      </View>
     )
   }
 }

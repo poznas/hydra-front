@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native'
+import {AsyncStorage} from 'react-native'
 
 const AUTH_TOKEN = 'authToken'
 const storage = () => {

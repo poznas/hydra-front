@@ -1,7 +1,7 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import {View} from 'react-native'
 
-import { FormInput, FormLabel } from 'react-native-elements'
+import {FormInput, FormLabel} from 'react-native-elements'
 
 class ApplyScreen extends React.Component {
   constructor(props) {
@@ -15,17 +15,17 @@ class ApplyScreen extends React.Component {
 
   render() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <FormLabel>Github nickname</FormLabel>
-          <FormInput onChangeText={(text) => this.setState({ github: text })}/>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <FormLabel>Github nickname</FormLabel>
+        <FormInput onChangeText={(text) => this.setState({github: text})}/>
 
-          <FormLabel>LinkedIn</FormLabel>
-          <FormInput onChangeText={(text) => this.setState({ linkedIn: text })}/>
+        <FormLabel>LinkedIn</FormLabel>
+        <FormInput onChangeText={(text) => this.setState({linkedIn: text})}/>
 
-          <FormLabel>CV</FormLabel>
-          <FormInput onChangeText={(text) => this.setState({ cv: text })}/>
+        <FormLabel>CV</FormLabel>
+        <FormInput onChangeText={(text) => this.setState({cv: text})}/>
 
-        </View>
+      </View>
     );
   }
 }

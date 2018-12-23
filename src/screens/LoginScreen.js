@@ -1,15 +1,15 @@
-import { Button, Text, View } from 'react-native'
-import React, { Component } from 'react'
-import { Google } from 'expo'
+import {Button, View} from 'react-native'
+import React, {Component} from 'react'
+import {Google} from 'expo'
 import axios from 'axios';
 
-import {BASE_URL, IOS_CLIENT, ANDROID_CLIENT} from 'react-native-dotenv'
+import {ANDROID_CLIENT, BASE_URL, IOS_CLIENT} from 'react-native-dotenv'
 
 import Storage from '../modules/AsyncStorage'
 
 class LoginScreen extends Component {
 
-  signInWithGoogle = async() => {
+  signInWithGoogle = async () => {
     try {
       const googleLoginResponse = await Google.logInAsync({
         behavior: 'web',
@@ -21,7 +21,7 @@ class LoginScreen extends Component {
       console.log(googleLoginResponse.type)
       console.log('\n')
 
-      if (googleLoginResponse.type === 'success'){
+      if (googleLoginResponse.type === 'success') {
         console.log('test')
 
         const url = [BASE_URL, '/auth/login'].join('');
@@ -34,7 +34,7 @@ class LoginScreen extends Component {
         const response = await axios.get(url, params);
 
         const token = response.headers.authorization
-        if (token){
+        if (token) {
           console.log('calling store')
           console.log(token);
           await Storage.storeItem(token)
@@ -43,22 +43,23 @@ class LoginScreen extends Component {
         }
       }
 
-    } catch(e) {
+    } catch (e) {
       return {error: true};
     }
   }
 
   render() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Button
-              title={'LOGIN'}
-              onPress={() => this.signInWithGoogle()}
-          />
-        </View>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Button
+          title={'LOGIN'}
+          onPress={() => this.signInWithGoogle()}
+        />
+      </View>
     );
   }
 }
+
 export default LoginScreen;
 
 

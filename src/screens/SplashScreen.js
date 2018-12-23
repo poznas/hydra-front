@@ -1,15 +1,15 @@
-
-import { AsyncStorage, Text, View } from 'react-native'
-import React, { Component } from 'react'
+import {Text, View} from 'react-native'
+import React, {Component} from 'react'
 import Context from '../modules/Context'
 
 
 import Storage from '../modules/AsyncStorage'
+
 const AUTH_TOKEN = 'authToken'
 
 class SplashScreen extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
   }
 
@@ -31,12 +31,13 @@ class SplashScreen extends Component {
 
   render() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text>Loading animation</Text>
-        </View>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>Loading animation</Text>
+      </View>
     );
   }
 }
+
 SplashScreen.contextType = Context;
 
 export default SplashScreen;
