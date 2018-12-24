@@ -1,65 +1,55 @@
-import { Button, Text, View } from 'react-native'
+import { Button, View } from 'react-native'
 import React, { Component } from 'react'
 import { Google } from 'expo'
-import axios from 'axios';
 
-import {BASE_URL, IOS_CLIENT, ANDROID_CLIENT} from 'react-native-dotenv'
+import { ANDROID_CLIENT, IOS_CLIENT } from 'react-native-dotenv'
 
 import Storage from '../modules/AsyncStorage'
+import { LoginConnector } from '../connectors/LoginConnector'
 
 class LoginScreen extends Component {
 
-  signInWithGoogle = async() => {
+  signInWithGoogle = async () => {
     try {
       const googleLoginResponse = await Google.logInAsync({
         behavior: 'web',
         androidClientId: ANDROID_CLIENT,
         iosClientId: IOS_CLIENT,
-        scopes: ['profile', 'email']
-      });
+        scopes: ['profile', 'email'],
+      })
 
       console.log(googleLoginResponse.type)
       console.log('\n')
 
-      if (googleLoginResponse.type === 'success'){
-        console.log('test')
-
-        const url = [BASE_URL, '/auth/login'].join('');
-        const params = {
-          headers: {
-            'X-ID-TOKEN': googleLoginResponse.idToken
-          }
-        }
-        console.log('test')
-        const response = await axios.get(url, params);
-
+      if (googleLoginResponse.type === 'success') {
+        const response = await LoginConnector.login(googleLoginResponse.idToken)
         const token = response.headers.authorization
-        if (token){
+
+        if (token) {
           console.log('calling store')
-          console.log(token);
+          console.log(token)
           await Storage.storeItem(token)
           console.log('called store')
-          this.props.navigation.navigate('App', {token: token})
+          this.props.navigation.navigate('App', { token: token })
         }
       }
 
-    } catch(e) {
-      return {error: true};
+    } catch (e) {
+      return { error: true }
     }
   }
 
   render() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text>LoginScreen</Text>
-          <Button
-              title={'Dzien dobry panie Poznanski'}
-              onPress={() => this.signInWithGoogle()}
-          />
-        </View>
-    );
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Button
+          title={'LOGIN'}
+          onPress={() => this.signInWithGoogle()}
+        />
+      </View>
+    )
   }
 }
-export default LoginScreen;
 
+export default LoginScreen
 

@@ -16,20 +16,20 @@ export class ContextProvider extends Component {
   }
 
   setToken = (token) => {
-    Storage.storeItem(token);
-    console.log('setToken called');
+    Storage.storeItem(token)
+    console.log('setToken called')
     this.setState({ token: token })
   }
 
   render() {
     return (
-        <Context.Provider
-            value={{
-              token: this.state.token,
-              setToken: this.setToken,
-            }}
-            children={this.props.children}
-        />
+      <Context.Provider
+        value={{
+          token: this.state.token,
+          setToken: this.setToken,
+        }}
+        children={this.props.children}
+      />
     )
   }
 }

@@ -1,26 +1,27 @@
-
-import { AsyncStorage, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import React, { Component } from 'react'
 import Context from '../modules/Context'
 
-
 import Storage from '../modules/AsyncStorage'
+import { BackendConnector } from '../connectors/BackendConnector'
+
 const AUTH_TOKEN = 'authToken'
 
 class SplashScreen extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
   }
 
   async componentDidMount() {
     try {
-      const token = await Storage.retrieveItem(AUTH_TOKEN);
+      const token = await Storage.retrieveItem(AUTH_TOKEN)
       if (token) {
-        await this.props.setToken(token);
+        await this.props.setToken(token)
+        BackendConnector.token = token
         // FOR TESTING
         // await Storage.clear()
-        this.props.navigation.navigate('App');
+        this.props.navigation.navigate('App')
       } else {
         this.props.navigation.navigate('Login')
       }
@@ -31,12 +32,13 @@ class SplashScreen extends Component {
 
   render() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text>Loading animation</Text>
-        </View>
-    );
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Loading animation</Text>
+      </View>
+    )
   }
 }
-SplashScreen.contextType = Context;
 
-export default SplashScreen;
+SplashScreen.contextType = Context
+
+export default SplashScreen
