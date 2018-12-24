@@ -1,11 +1,12 @@
 import { Text, View } from 'react-native'
 import React, { Component } from 'react'
 import { Button } from 'react-native-elements'
+import { Styles } from '../../Styles'
 
 class JobDetailsScreen extends Component {
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={Styles.formScreen}>
         <Text>REACT NATIVE BLABLABLA</Text>
         <Text>20000 PLN</Text>
         <Text>Job Description</Text>

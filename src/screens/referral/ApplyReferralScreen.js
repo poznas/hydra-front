@@ -2,6 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 
 import { FormInput, FormLabel } from 'react-native-elements'
+import { Styles } from '../../Styles'
 
 class ApplyReferralScreen extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class ApplyReferralScreen extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={Styles.formScreen}>
         <FormLabel>Github nickname</FormLabel>
         <FormInput onChangeText={(text) => this.setState({ github: text })}/>
 

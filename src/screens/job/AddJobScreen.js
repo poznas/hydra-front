@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Button, FormInput, FormLabel } from 'react-native-elements'
 import Picker from 'react-native-picker-select'
 import { AVAILABLE_LANGUAGES } from '../../utils/constants'
+import { Styles } from '../../Styles'
 
 class AddJobScreen extends Component {
   constructor(props) {
@@ -19,11 +20,7 @@ class AddJobScreen extends Component {
 
   render() {
     return (
-      <View style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+      <View style={Styles.formScreen}>
 
         <FormLabel>Job Description</FormLabel>
         <FormInput onChangeText={(text) => this.setState({ jobDescription: text })}/>

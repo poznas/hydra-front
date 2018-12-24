@@ -12,13 +12,12 @@ class WikiEntry extends Component {
       upVotes: 0,
       downVotes: 0,
       upVotedAlready: false,
-      downVotedAlready: false
+      downVotedAlready: false,
     }
   }
 
   componentWillMount() {
-    this.setState(
-      { upVotes: this.props.upVotes, downVotes: this.props.downVotes })
+    this.setState({ upVotes: this.props.upVotes, downVotes: this.props.downVotes })
   }
 
   vote = async (id, value) => {
@@ -29,10 +28,9 @@ class WikiEntry extends Component {
             upVotes: this.state.upVotes + 1,
             downVotes: this.state.downVotes - 1,
             upVotedAlready: true,
-            downVotedAlready: false
+            downVotedAlready: false,
           })
-        }
-        else {
+        } else {
           this.setState({ upVotes: this.state.upVotes + 1, upVotedAlready: true })
         }
       }
@@ -43,7 +41,7 @@ class WikiEntry extends Component {
             upVotes: this.state.upVotes - 1,
             downVotes: this.state.downVotes + 1,
             downVotedAlready: true,
-            upVotedAlready: false
+            upVotedAlready: false,
           })
         } else {
           this.setState({ downVotes: this.state.downVotes + 1, downVotedAlready: true })
@@ -52,14 +50,14 @@ class WikiEntry extends Component {
     }
     const data = {
       informationId: id,
-      vote: value
+      vote: value,
     }
     await BackendConnector.voteWikiInfo(data)
   }
 
   render() {
     return (
-      <View style={{ flex: 1, }}>
+      <View style={{ flex: 1 }}>
         <ListItem
           key={uuid()}
           title={this.props.title}
@@ -72,24 +70,24 @@ class WikiEntry extends Component {
         <View style={{
           flex: 1,
           flexDirection: 'row',
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}>
           <Button buttonStyle={{ backgroundColor: 'green', width: 60 }}
-                  onPress={() => this.vote(this.props.id, 'UP')}
-                  icon={{
-                    type: 'font-awesome',
-                    name: 'thumbs-up',
-                    color: 'white'
-                  }}
-                  title={this.state.upVotes.toString()}/>
+            onPress={() => this.vote(this.props.id, 'UP')}
+            icon={{
+              type: 'font-awesome',
+              name: 'thumbs-up',
+              color: 'white',
+            }}
+            title={this.state.upVotes.toString()}/>
           <Button buttonStyle={{ backgroundColor: 'red', width: 60 }}
-                  onPress={() => this.vote(this.props.id, 'DOWN')}
-                  icon={{
-                    type: 'font-awesome',
-                    name: 'thumbs-down',
-                    color: 'white'
-                  }}
-                  title={this.state.downVotes.toString()}
+            onPress={() => this.vote(this.props.id, 'DOWN')}
+            icon={{
+              type: 'font-awesome',
+              name: 'thumbs-down',
+              color: 'white',
+            }}
+            title={this.state.downVotes.toString()}
           />
         </View>
       </View>

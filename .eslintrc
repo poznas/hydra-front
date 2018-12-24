@@ -24,7 +24,6 @@
   },
   "rules": {
     "space-infix-ops": ["error", { "int32Hint": false }],
-    "linebreak-style": ["error", "unix"],
     "for-direction": "error",
     "getter-return": "error",
     "no-constant-condition": "error",

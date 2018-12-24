@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import React, { Component } from 'react'
 
 import uuid from 'uuid/v4'
@@ -6,6 +6,7 @@ import { Header, List, ListItem } from 'react-native-elements'
 import TouchableScale from 'react-native-touchable-scale'
 
 import { BackendConnector } from '../../connectors/BackendConnector'
+import { Styles } from '../../Styles'
 
 class WikiCompanyScreen extends Component {
 
@@ -52,7 +53,7 @@ class WikiCompanyScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={Styles.container}>
         <Header
           centerComponent={{ text: 'Companies', style: { color: '#fff' } }}
           backgroundColor={'#000000'}
@@ -67,11 +68,4 @@ class WikiCompanyScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-  },
-})
 export default WikiCompanyScreen

@@ -4,6 +4,7 @@ import Context from '../modules/Context'
 
 import Storage from '../modules/AsyncStorage'
 import { BackendConnector } from '../connectors/BackendConnector'
+import { Styles } from '../Styles'
 
 const AUTH_TOKEN = 'authToken'
 
@@ -32,7 +33,7 @@ class SplashScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={Styles.formScreen}>
         <Text>Loading animation</Text>
       </View>
     )
