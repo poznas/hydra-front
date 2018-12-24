@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Button } from 'react-native-elements'
 import { Styles } from '../../Styles'
+import { formatDate } from '../../utils/DateTimeUtils'
 
 class JobDetailsScreen extends Component {
 
@@ -17,6 +18,7 @@ class JobDetailsScreen extends Component {
         <Text style={Styles.normalText}>{job.description}</Text>
         <Text style={Styles.headerText}>Programming languages:</Text>
         <Text style={Styles.normalText}>{job.programmingLanguages.join(', ')}</Text>
+        <Text style={Styles.headerText}>Closing date: {formatDate(job.closingDate)}</Text>
         <View style={Styles.bottom}>
           <Button title={'Create referral'} onPress={() => this.props.navigation.navigate('Main')}/>
         </View>
