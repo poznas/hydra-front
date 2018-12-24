@@ -54,7 +54,7 @@ class WikiEntry extends Component {
       informationId: id,
       vote: value
     }
-    await BackendConnector.voteWikiInfo(this.props.token, data)
+    await BackendConnector.voteWikiInfo(data)
   }
 
   render() {

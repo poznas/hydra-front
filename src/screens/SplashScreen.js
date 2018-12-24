@@ -4,6 +4,7 @@ import Context from '../modules/Context'
 
 
 import Storage from '../modules/AsyncStorage'
+import {BackendConnector} from "../connectors/BackendConnector"
 
 const AUTH_TOKEN = 'authToken'
 
@@ -15,12 +16,13 @@ class SplashScreen extends Component {
 
   async componentDidMount() {
     try {
-      const token = await Storage.retrieveItem(AUTH_TOKEN);
+      const token = await Storage.retrieveItem(AUTH_TOKEN)
       if (token) {
-        await this.props.setToken(token);
+        await this.props.setToken(token)
+        BackendConnector.token = token
         // FOR TESTING
         //await Storage.clear()
-        this.props.navigation.navigate('App');
+        this.props.navigation.navigate('App')
       } else {
         this.props.navigation.navigate('Login')
       }
@@ -34,10 +36,10 @@ class SplashScreen extends Component {
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text>Loading animation</Text>
       </View>
-    );
+    )
   }
 }
 
-SplashScreen.contextType = Context;
+SplashScreen.contextType = Context
 
-export default SplashScreen;
+export default SplashScreen

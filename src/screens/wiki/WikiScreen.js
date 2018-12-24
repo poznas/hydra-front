@@ -19,7 +19,7 @@ class WikiScreen extends Component {
   async triggerRefresh() {
     console.log(this.state.company, 'this.state.company from trigger ref')
     const filters = {companyIds: [this.state.company.companyId]}
-    const response = await BackendConnector.getWikiEntries(this.props.token, filters)
+    const response = await BackendConnector.getWikiEntries(filters)
     this.setState({wikiEntries: response.content})
   }
 
@@ -27,7 +27,7 @@ class WikiScreen extends Component {
     const company = this.props.navigation.getParam('company', {})
     console.log(company)
     const filters = {companyIds: [company.companyId]}
-    const response = await BackendConnector.getWikiEntries(this.props.token, filters)
+    const response = await BackendConnector.getWikiEntries(filters)
     this.setState({company: company, wikiEntries: response.content})
   }
 

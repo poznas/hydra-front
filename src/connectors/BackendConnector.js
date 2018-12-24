@@ -3,31 +3,33 @@ import {COMPANIES_PATH, fullPath, WIKI_ADD_PATH, WIKI_ENTRIES_PATH, WIKI_VOTE_PA
 
 export class BackendConnector {
 
-  static getCompanies = (token) => BackendConnector.getPageable(fullPath(COMPANIES_PATH), {}, token, 1000)
-  static getWikiEntries = (token, filters) => BackendConnector.getPageable(fullPath(WIKI_ENTRIES_PATH), filters, token, 1000)
-  static addWikiInfo = (token, body) => BackendConnector.post(fullPath(WIKI_ADD_PATH), body, token)
-  static voteWikiInfo = (token, body) => BackendConnector.post(fullPath(WIKI_VOTE_PATH), body, token)
+  static token = "";
 
-  static getPageable = (url, body, token, pageSize) => {
-    return BackendConnector.get(url + "?size=" + pageSize, body, token)
+  static getCompanies = () => BackendConnector.getPageable(fullPath(COMPANIES_PATH), {}, 1000)
+  static getWikiEntries = (filters) => BackendConnector.getPageable(fullPath(WIKI_ENTRIES_PATH), filters, 1000)
+  static addWikiInfo = (body) => BackendConnector.post(fullPath(WIKI_ADD_PATH), body)
+  static voteWikiInfo = (body) => BackendConnector.post(fullPath(WIKI_VOTE_PATH), body)
+
+  static getPageable = (url, body, pageSize) => {
+    return BackendConnector.get(url + "?size=" + pageSize, body)
   }
 
-  static get = (url, body, token) => {
+  static get = (url, body) => {
     const params = {
       headers: {
         'Content-Type': 'application/json',
         'X-HTTP-Method-Override': 'GET',
-        Authorization: token
+        Authorization: BackendConnector.token
       }
     }
     return BackendConnector.sendRequest(url, body, params)
   }
 
-  static post = (url, body, token) => {
+  static post = (url, body) => {
     const params = {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: token
+        Authorization: BackendConnector.token
       }
     }
     return BackendConnector.sendRequest(url, body, params)

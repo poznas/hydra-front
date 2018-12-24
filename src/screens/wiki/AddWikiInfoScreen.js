@@ -34,7 +34,7 @@ class AddWikiInfoScreen extends Component {
       programmingLanguage: this.state.language
     }
 
-    await BackendConnector.addWikiInfo(this.props.token, body)
+    await BackendConnector.addWikiInfo(body)
     this.props.navigation.state.params.onReturn()
     this.props.navigation.goBack()
   }

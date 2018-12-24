@@ -21,7 +21,7 @@ class WikiCompanyScreen extends Component {
 
   async componentWillMount() {
     try {
-      const response = await BackendConnector.getCompanies(this.props.token)
+      const response = await BackendConnector.getCompanies()
       this.setState({
         token: this.props.token,
         list: response.content
