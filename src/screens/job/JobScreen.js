@@ -1,13 +1,12 @@
 import { ScrollView, View } from 'react-native'
 import PropTypes from 'prop-types'
-import { Button } from 'react-native-elements'
 import React, { Component } from 'react'
 import { BackendConnector } from '../../connectors/BackendConnector'
-import Header from 'react-native-elements/src/header/Header'
 import List from 'react-native-elements/src/list/List'
 import uuid from 'uuid/v4'
 import ListItem from 'react-native-elements/src/list/ListItem'
 import { Styles } from '../../Styles'
+import ActionButton from 'react-native-action-button'
 
 class JobScreen extends Component {
   constructor() {
@@ -33,29 +32,22 @@ class JobScreen extends Component {
         title={job.title}
         subtitle={job.companyName + ', ' + job.city}
         rightTitle={job.minSalary + ' - ' + job.maxSalary}
+        onPress={() => this.props.navigation.navigate('Detail', { job: job })}
       />)
 
   render() {
     return (
       <View style={Styles.listScreen}>
-        <Header
-          centerComponent={{
-            text: 'Jobs',
-            style: { color: '#fff' },
-          }}
-          backgroundColor={'#000000'}
-        />
         <ScrollView>
           <List>
             {this.renderList(this.state.jobs)}
           </List>
         </ScrollView>
-        <Button
-          icon={{ type: 'font-awesome', name: 'plus-circle' }}
+        <ActionButton
+          buttonColor={'#0067ea'}
           onPress={() => this.props.navigation.navigate('Form', {
             onReturn: this.triggerRefresh.bind(this),
           })}
-          backgroundColor={'#000000'}
         />
       </View>
     )
