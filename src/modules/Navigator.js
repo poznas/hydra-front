@@ -23,9 +23,22 @@ const WikiStackNavigator = createStackNavigator(
 
 const JobStackNavigator = createStackNavigator(
   {
-    Main: { screen: wrapScreenWithContext(JobScreen) },
-    Detail: { screen: wrapScreenWithContext(JobDetailsScreen) },
-    Form: { screen: wrapScreenWithContext(AddJobScreen) },
+    Main: {
+      screen: wrapScreenWithContext(JobScreen),
+      navigationOptions: { headerTitle: 'Jobs' },
+    },
+    Detail: {
+      screen: wrapScreenWithContext(JobDetailsScreen),
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: navigation.getParam('job', {}).title,
+        }
+      },
+    },
+    Form: {
+      screen: wrapScreenWithContext(AddJobScreen),
+      navigationOptions: { headerTitle: 'Add Job' },
+    },
   },
   {
     initialRouteName: 'Main',
