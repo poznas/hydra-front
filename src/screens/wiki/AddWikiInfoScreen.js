@@ -1,10 +1,10 @@
-import {View} from 'react-native'
-import React, {Component} from 'react'
+import { View } from 'react-native'
+import React, { Component } from 'react'
 
-import {Button, FormInput, FormLabel} from 'react-native-elements'
+import { Button, FormInput, FormLabel } from 'react-native-elements'
 import Picker from 'react-native-picker-select'
-import {AVAILABLE_LANGUAGES, AVAILABLE_RECRUITMENT_TYPES} from '../../utils/constants'
-import {BackendConnector} from "../../connectors/BackendConnector"
+import { AVAILABLE_LANGUAGES, AVAILABLE_RECRUITMENT_TYPES } from '../../utils/constants'
+import { BackendConnector } from '../../connectors/BackendConnector'
 
 class AddWikiInfoScreen extends Component {
 
@@ -15,7 +15,7 @@ class AddWikiInfoScreen extends Component {
       recruitmentType: '',
       language: 'initial value',
       content: '',
-      onReturn: {}
+      onReturn: {},
     }
   }
 
@@ -23,7 +23,7 @@ class AddWikiInfoScreen extends Component {
     const companyId = this.props.navigation.getParam('companyId', '')
     console.log(this.props.navigation, 'nav')
     console.log(companyId)
-    this.setState({companyId: companyId})
+    this.setState({ companyId: companyId })
   }
 
   addInfo = async () => {
@@ -31,7 +31,7 @@ class AddWikiInfoScreen extends Component {
       companyId: this.state.companyId,
       recruitmentType: this.state.recruitmentType,
       content: this.state.content,
-      programmingLanguage: this.state.language
+      programmingLanguage: this.state.language,
     }
 
     await BackendConnector.addWikiInfo(body)
@@ -44,25 +44,25 @@ class AddWikiInfoScreen extends Component {
       <View style={{
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       }}>
 
         <FormLabel>Language</FormLabel>
         <Picker onValueChange={(value) => {
           console.log(value)
-          this.setState({language: value})
+          this.setState({ language: value })
           console.log(`${value} has been selected`)
         }} items={AVAILABLE_LANGUAGES}/>
 
         <FormLabel>Form of recruitment</FormLabel>
         <Picker onValueChange={(value) => {
           console.log(value)
-          this.setState({recruitmentType: value})
+          this.setState({ recruitmentType: value })
           console.log(`${value} has been selected`)
         }} items={AVAILABLE_RECRUITMENT_TYPES}/>
 
         <FormLabel>Content</FormLabel>
-        <FormInput onChangeText={(text) => this.setState({content: text})}/>
+        <FormInput onChangeText={(text) => this.setState({ content: text })}/>
 
         <Button onPress={this.addInfo}/>
       </View>

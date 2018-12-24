@@ -14,11 +14,12 @@
     "react",
     "react-native"
   ],
-  "ecmaFeatures": {
-    "jsx": true
-  },
+  "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "ecmaVersion": 2017
   },
   "rules": {
@@ -73,6 +74,7 @@
     "no-spaced-func": "error",
     "array-callback-return": "error",
     "lines-between-class-members": ["error", "always"],
+    "indent": ["error", 2],
     "block-scoped-var": "error",
     "no-multi-spaces": "error",
     "brace-style": "error",

@@ -1,11 +1,11 @@
-import {ScrollView, StyleSheet, View} from 'react-native'
-import React, {Component} from 'react'
+import { ScrollView, StyleSheet, View } from 'react-native'
+import React, { Component } from 'react'
 
 import uuid from 'uuid/v4'
-import {Header, List, ListItem} from 'react-native-elements'
+import { Header, List, ListItem } from 'react-native-elements'
 import TouchableScale from 'react-native-touchable-scale'
 
-import {BackendConnector} from "../../connectors/BackendConnector"
+import { BackendConnector } from '../../connectors/BackendConnector'
 
 class WikiCompanyScreen extends Component {
 
@@ -24,14 +24,14 @@ class WikiCompanyScreen extends Component {
       const response = await BackendConnector.getCompanies()
       this.setState({
         token: this.props.token,
-        list: response.content
+        list: response.content,
       })
     } catch (e) {
       console.log(e)
     }
   }
 
-  onPress = (item) => this.props.navigation.navigate('Detail', {company: item})
+  onPress = (item) => this.props.navigation.navigate('Detail', { company: item })
 
   renderItem(item) {
     return (< ListItem
@@ -54,7 +54,7 @@ class WikiCompanyScreen extends Component {
     return (
       <View style={styles.container}>
         <Header
-          centerComponent={{text: 'Companies', style: {color: '#fff'}}}
+          centerComponent={{ text: 'Companies', style: { color: '#fff' } }}
           backgroundColor={'#000000'}
         />
         <ScrollView>
@@ -72,6 +72,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-  }
+  },
 })
 export default WikiCompanyScreen

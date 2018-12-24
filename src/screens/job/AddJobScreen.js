@@ -1,8 +1,8 @@
-import {View} from 'react-native'
-import React, {Component} from 'react'
-import {Button, FormInput, FormLabel} from 'react-native-elements'
-import Picker from "react-native-picker-select"
-import {AVAILABLE_LANGUAGES} from '../../utils/constants'
+import { View } from 'react-native'
+import React, { Component } from 'react'
+import { Button, FormInput, FormLabel } from 'react-native-elements'
+import Picker from 'react-native-picker-select'
+import { AVAILABLE_LANGUAGES } from '../../utils/constants'
 
 class AddJobScreen extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class AddJobScreen extends Component {
       language2: '',
       language3: '',
       minSalary: '',
-      maxSalary: ''
+      maxSalary: '',
     }
   }
 
@@ -22,40 +22,39 @@ class AddJobScreen extends Component {
       <View style={{
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       }}>
 
         <FormLabel>Job Description</FormLabel>
-        <FormInput onChangeText={(text) => this.setState({jobDescription: text})}/>
+        <FormInput onChangeText={(text) => this.setState({ jobDescription: text })}/>
 
         <FormLabel>Minimal Salary</FormLabel>
-        <FormInput onChangeText={(text) => this.setState({minSalary: text})}/>
+        <FormInput onChangeText={(text) => this.setState({ minSalary: text })}/>
 
         <FormLabel>Maximal Salary</FormLabel>
-        <FormInput onChangeText={(text) => this.setState({maxSalary: text})}/>
+        <FormInput onChangeText={(text) => this.setState({ maxSalary: text })}/>
 
         <FormLabel> Programming Languages </FormLabel>
         <Picker onValueChange={(value) => {
           console.log(value)
-          this.setState({language1: value})
+          this.setState({ language1: value })
           console.log(`${value} has been selected`)
         }} items={AVAILABLE_LANGUAGES}/>
         <Picker onValueChange={(value) => {
           console.log(value)
-          this.setState({language2: value})
+          this.setState({ language2: value })
           console.log(`${value} has been selected`)
         }} items={AVAILABLE_LANGUAGES}/>
         <Picker onValueChange={(value) => {
           console.log(value)
-          this.setState({language3: value})
+          this.setState({ language3: value })
           console.log(`${value} has been selected`)
         }} items={AVAILABLE_LANGUAGES}/>
 
-        <Button onPress={console.log("")}/>
+        <Button onPress={console.log('')}/>
       </View>
     )
   }
 }
 
-
-export default AddJobScreen;
+export default AddJobScreen

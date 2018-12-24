@@ -1,4 +1,4 @@
-import {AsyncStorage} from 'react-native'
+import { AsyncStorage } from 'react-native'
 
 const AUTH_TOKEN = 'authToken'
 const storage = () => {
@@ -17,24 +17,23 @@ const storage = () => {
       if (value !== null) {
         return value
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error)
     }
   }
 
   // TEST PURPOSE ONLY
   const clear = async () => {
-    const allKeys = await AsyncStorage.getAllKeys();
-    console.log(allKeys);
-    await AsyncStorage.clear();
+    const allKeys = await AsyncStorage.getAllKeys()
+    console.log(allKeys)
+    await AsyncStorage.clear()
   }
 
   return {
     storeItem,
     retrieveItem,
-    clear
+    clear,
   }
 }
 
-export default storage();
+export default storage()

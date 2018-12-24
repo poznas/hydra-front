@@ -1,4 +1,4 @@
-import {Context} from '../modules/Context'
+import { Context } from '../modules/Context'
 import React from 'react'
 
 const WrapScreenWithContext = (ComponentToBeLoaded) => (props) => {

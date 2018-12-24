@@ -1,38 +1,36 @@
 import JobScreen from '../screens/job/JobScreen'
 import LoginScreen from '../screens/LoginScreen'
-import WikiCompanyScreen from "../screens/wiki/WikiCompanyScreen"
+import WikiCompanyScreen from '../screens/wiki/WikiCompanyScreen'
 import WikiScreen from '../screens/wiki/WikiScreen'
 import SplashScreen from '../screens/SplashScreen'
 import AddWikiInfoScreen from '../screens/wiki/AddWikiInfoScreen'
 import wrapScreenWithContext from '../utils/wrapScreenWithContext'
 
-
-import {createBottomTabNavigator, createStackNavigator, createSwitchNavigator} from 'react-navigation'
+import { createBottomTabNavigator, createStackNavigator, createSwitchNavigator } from 'react-navigation'
 import JobDetailsScreen from '../screens/job/JobDetailsScreen'
 import AddJobScreen from '../screens/job/AddJobScreen'
 
 const WikiStackNavigator = createStackNavigator(
   {
-    Main: {screen: wrapScreenWithContext(WikiCompanyScreen)},
-    Detail: {screen: wrapScreenWithContext(WikiScreen)},
-    Form: {screen: wrapScreenWithContext(AddWikiInfoScreen)}
+    Main: { screen: wrapScreenWithContext(WikiCompanyScreen) },
+    Detail: { screen: wrapScreenWithContext(WikiScreen) },
+    Form: { screen: wrapScreenWithContext(AddWikiInfoScreen) },
   },
   {
-    initialRouteName: 'Main'
+    initialRouteName: 'Main',
   }
 )
 
 const JobStackNavigator = createStackNavigator(
   {
-    Main: {screen: wrapScreenWithContext(JobScreen)},
-    Detail: {screen: wrapScreenWithContext(JobDetailsScreen)},
-    Form: {screen: wrapScreenWithContext(AddJobScreen)}
+    Main: { screen: wrapScreenWithContext(JobScreen) },
+    Detail: { screen: wrapScreenWithContext(JobDetailsScreen) },
+    Form: { screen: wrapScreenWithContext(AddJobScreen) },
   },
   {
-    initialRouteName: 'Main'
+    initialRouteName: 'Main',
   }
 )
-
 
 const TabNavigator = createBottomTabNavigator(
   {
@@ -51,6 +49,6 @@ export default createSwitchNavigator(
     Splash: wrapScreenWithContext(SplashScreen),
   },
   {
-    initialRouteName: 'Splash'
+    initialRouteName: 'Splash',
   }
 )

@@ -1,10 +1,9 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Storage from './AsyncStorage'
 
 export const Context = React.createContext({
   token: '',
-  setToken: () => {
-  },
+  setToken: () => {},
 })
 
 export class ContextProvider extends Component {
@@ -17,9 +16,9 @@ export class ContextProvider extends Component {
   }
 
   setToken = (token) => {
-    Storage.storeItem(token);
-    console.log('setToken called');
-    this.setState({token: token})
+    Storage.storeItem(token)
+    console.log('setToken called')
+    this.setState({ token: token })
   }
 
   render() {

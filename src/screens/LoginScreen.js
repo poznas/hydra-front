@@ -1,11 +1,11 @@
-import {Button, View} from 'react-native'
-import React, {Component} from 'react'
-import {Google} from 'expo'
+import { Button, View } from 'react-native'
+import React, { Component } from 'react'
+import { Google } from 'expo'
 
-import {ANDROID_CLIENT, IOS_CLIENT} from 'react-native-dotenv'
+import { ANDROID_CLIENT, IOS_CLIENT } from 'react-native-dotenv'
 
 import Storage from '../modules/AsyncStorage'
-import {LoginConnector} from "../connectors/LoginConnector"
+import { LoginConnector } from '../connectors/LoginConnector'
 
 class LoginScreen extends Component {
 
@@ -15,7 +15,7 @@ class LoginScreen extends Component {
         behavior: 'web',
         androidClientId: ANDROID_CLIENT,
         iosClientId: IOS_CLIENT,
-        scopes: ['profile', 'email']
+        scopes: ['profile', 'email'],
       })
 
       console.log(googleLoginResponse.type)
@@ -30,18 +30,18 @@ class LoginScreen extends Component {
           console.log(token)
           await Storage.storeItem(token)
           console.log('called store')
-          this.props.navigation.navigate('App', {token: token})
+          this.props.navigation.navigate('App', { token: token })
         }
       }
 
     } catch (e) {
-      return {error: true}
+      return { error: true }
     }
   }
 
   render() {
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Button
           title={'LOGIN'}
           onPress={() => this.signInWithGoogle()}
@@ -52,5 +52,4 @@ class LoginScreen extends Component {
 }
 
 export default LoginScreen
-
 

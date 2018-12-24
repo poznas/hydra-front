@@ -1,9 +1,9 @@
-import {View} from 'react-native'
-import React, {Component} from 'react'
-import {Button, ListItem} from 'react-native-elements'
+import { View } from 'react-native'
+import React, { Component } from 'react'
+import { Button, ListItem } from 'react-native-elements'
 import uuid from 'uuid/v4'
 import TouchableScale from 'react-native-touchable-scale'
-import {BackendConnector} from "../connectors/BackendConnector"
+import { BackendConnector } from '../connectors/BackendConnector'
 
 class WikiEntry extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class WikiEntry extends Component {
 
   componentWillMount() {
     this.setState(
-      {upVotes: this.props.upVotes, downVotes: this.props.downVotes})
+      { upVotes: this.props.upVotes, downVotes: this.props.downVotes })
   }
 
   vote = async (id, value) => {
@@ -33,7 +33,7 @@ class WikiEntry extends Component {
           })
         }
         else {
-          this.setState({upVotes: this.state.upVotes + 1, upVotedAlready: true})
+          this.setState({ upVotes: this.state.upVotes + 1, upVotedAlready: true })
         }
       }
     } else {
@@ -46,7 +46,7 @@ class WikiEntry extends Component {
             upVotedAlready: false
           })
         } else {
-          this.setState({downVotes: this.state.downVotes + 1, downVotedAlready: true})
+          this.setState({ downVotes: this.state.downVotes + 1, downVotedAlready: true })
         }
       }
     }
@@ -59,7 +59,7 @@ class WikiEntry extends Component {
 
   render() {
     return (
-      <View style={{flex: 1,}}>
+      <View style={{ flex: 1, }}>
         <ListItem
           key={uuid()}
           title={this.props.title}
@@ -74,7 +74,7 @@ class WikiEntry extends Component {
           flexDirection: 'row',
           justifyContent: 'center'
         }}>
-          <Button buttonStyle={{backgroundColor: 'green', width: 60}}
+          <Button buttonStyle={{ backgroundColor: 'green', width: 60 }}
                   onPress={() => this.vote(this.props.id, 'UP')}
                   icon={{
                     type: 'font-awesome',
@@ -82,7 +82,7 @@ class WikiEntry extends Component {
                     color: 'white'
                   }}
                   title={this.state.upVotes.toString()}/>
-          <Button buttonStyle={{backgroundColor: 'red', width: 60}}
+          <Button buttonStyle={{ backgroundColor: 'red', width: 60 }}
                   onPress={() => this.vote(this.props.id, 'DOWN')}
                   icon={{
                     type: 'font-awesome',

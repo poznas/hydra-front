@@ -1,10 +1,10 @@
-import {ScrollView, View} from 'react-native'
-import React, {Component} from 'react'
+import { ScrollView, View } from 'react-native'
+import React, { Component } from 'react'
 import WikiEntry from '../../components/WikiEntry'
-import {Button, Header, List} from 'react-native-elements'
+import { Button, Header, List } from 'react-native-elements'
 import uuid from 'uuid/v4'
 
-import {BackendConnector} from "../../connectors/BackendConnector"
+import { BackendConnector } from '../../connectors/BackendConnector'
 
 class WikiScreen extends Component {
   constructor(props) {
@@ -18,17 +18,17 @@ class WikiScreen extends Component {
 
   async triggerRefresh() {
     console.log(this.state.company, 'this.state.company from trigger ref')
-    const filters = {companyIds: [this.state.company.companyId]}
+    const filters = { companyIds: [this.state.company.companyId] }
     const response = await BackendConnector.getWikiEntries(filters)
-    this.setState({wikiEntries: response.content})
+    this.setState({ wikiEntries: response.content })
   }
 
   async componentWillMount() {
     const company = this.props.navigation.getParam('company', {})
     console.log(company)
-    const filters = {companyIds: [company.companyId]}
+    const filters = { companyIds: [company.companyId] }
     const response = await BackendConnector.getWikiEntries(filters)
-    this.setState({company: company, wikiEntries: response.content})
+    this.setState({ company: company, wikiEntries: response.content })
   }
 
   renderItem(item) {
@@ -52,11 +52,11 @@ class WikiScreen extends Component {
 
   render() {
     return (
-      <View style={{flex: 1, justifyContent: 'space-between'}}>
+      <View style={{ flex: 1, justifyContent: 'space-between' }}>
         <Header
           centerComponent={{
             text: this.state.company.companyName,
-            style: {color: '#fff'}
+            style: { color: '#fff' },
           }}
           backgroundColor={'#000000'}
         />
@@ -66,10 +66,10 @@ class WikiScreen extends Component {
           </List>
         </ScrollView>
         <Button
-          icon={{type: 'font-awesome', name: 'plus-circle'}}
+          icon={{ type: 'font-awesome', name: 'plus-circle' }}
           onPress={() => this.props.navigation.navigate('Form', {
             companyId: this.state.company.companyId,
-            onReturn: this.triggerRefresh.bind(this)
+            onReturn: this.triggerRefresh.bind(this),
           })}
           backgroundColor={'#000000'}
         />

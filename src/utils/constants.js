@@ -1,57 +1,57 @@
 export const AVAILABLE_LANGUAGES = [
   {
     label: 'Java',
-    value: 'JAVA'
+    value: 'JAVA',
   },
   {
     label: 'C++',
-    value: 'CPP'
+    value: 'CPP',
   },
   {
     label: 'Scala',
-    value: 'SCALA'
+    value: 'SCALA',
   },
   {
     label: 'PHP',
-    value: 'PHP'
+    value: 'PHP',
   },
   {
     label: 'Ruby',
-    value: 'RUBY'
+    value: 'RUBY',
   },
   {
     label: 'Python',
-    value: 'PYTHON'
+    value: 'PYTHON',
   },
   {
     label: 'JavaScript',
-    value: 'JAVASCRIPT'
+    value: 'JAVASCRIPT',
   },
   {
     label: 'Groovy',
-    value: 'GROOVY'
+    value: 'GROOVY',
   },
   {
     label: 'C',
-    value: 'C'
+    value: 'C',
   },
   {
     label: 'Objective C',
-    value: 'OBJECTIVE_C'
+    value: 'OBJECTIVE_C',
   },
   {
     label: 'C#',
-    value: 'C_SHARP'
+    value: 'C_SHARP',
   },
 ]
 
 export const AVAILABLE_RECRUITMENT_TYPES = [
   {
     label: 'Test',
-    value: 'TEST'
+    value: 'TEST',
   },
   {
     label: 'Interview',
-    value: 'INTERVIEW'
+    value: 'INTERVIEW',
   },
 ]
