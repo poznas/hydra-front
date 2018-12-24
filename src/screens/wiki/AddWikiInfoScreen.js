@@ -5,6 +5,7 @@ import { Button, FormInput, FormLabel } from 'react-native-elements'
 import Picker from 'react-native-picker-select'
 import { AVAILABLE_LANGUAGES, AVAILABLE_RECRUITMENT_TYPES } from '../../utils/constants'
 import { BackendConnector } from '../../connectors/BackendConnector'
+import { Styles } from '../../Styles'
 
 class AddWikiInfoScreen extends Component {
 
@@ -41,11 +42,7 @@ class AddWikiInfoScreen extends Component {
 
   render() {
     return (
-      <View style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+      <View style={Styles.formScreen}>
 
         <FormLabel>Language</FormLabel>
         <Picker onValueChange={(value) => {

@@ -7,4 +7,6 @@ export const WIKI_ENTRIES_PATH = '/wiki/recruitment/info/entries'
 export const WIKI_ADD_PATH = '/wiki/recruitment/info/add'
 export const WIKI_VOTE_PATH = '/wiki/recruitment/info/vote'
 
+export const JOB_JOBS_PATH = '/job/jobs'
+
 export const fullPath = (path) => [BASE_URL, path].join('')

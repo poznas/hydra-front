@@ -5,6 +5,7 @@ import { Button, Header, List } from 'react-native-elements'
 import uuid from 'uuid/v4'
 
 import { BackendConnector } from '../../connectors/BackendConnector'
+import { Styles } from '../../Styles'
 
 class WikiScreen extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ class WikiScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'space-between' }}>
+      <View style={Styles.listScreen}>
         <Header
           centerComponent={{
             text: this.state.company.companyName,

@@ -6,6 +6,7 @@ import { ANDROID_CLIENT, IOS_CLIENT } from 'react-native-dotenv'
 
 import Storage from '../modules/AsyncStorage'
 import { LoginConnector } from '../connectors/LoginConnector'
+import { Styles } from '../Styles'
 
 class LoginScreen extends Component {
 
@@ -41,7 +42,7 @@ class LoginScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={Styles.formScreen}>
         <Button
           title={'LOGIN'}
           onPress={() => this.signInWithGoogle()}
