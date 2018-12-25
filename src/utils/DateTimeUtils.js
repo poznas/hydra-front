@@ -5,3 +5,4 @@ export const formatDate = (unixTimestamp) =>
     year: 'numeric',
   })
 
+export const toUnixTimestamp = (stringDate) => (+new Date(stringDate) / 1000).toFixed(0)
