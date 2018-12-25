@@ -1,6 +1,14 @@
 /* eslint-disable lines-between-class-members */
 import axios from 'axios/index'
-import { COMPANIES_PATH, fullPath, JOB_JOBS_PATH, WIKI_ADD_PATH, WIKI_ENTRIES_PATH, WIKI_VOTE_PATH } from './Path'
+import {
+  COMPANIES_PATH,
+  fullPath,
+  JOB_ADD_PATH,
+  JOB_JOBS_PATH,
+  WIKI_ADD_PATH,
+  WIKI_ENTRIES_PATH,
+  WIKI_VOTE_PATH,
+} from './Path'
 
 export class BackendConnector {
 
@@ -12,6 +20,7 @@ export class BackendConnector {
   static voteWikiInfo = (body) => BackendConnector.post(fullPath(WIKI_VOTE_PATH), body)
 
   static getJobs = () => BackendConnector.getPageable(fullPath(JOB_JOBS_PATH), {}, 1000)
+  static addJob = (body) => BackendConnector.post(fullPath(JOB_ADD_PATH), body)
 
   static getPageable = (url, body, pageSize) =>
     BackendConnector.get(url + '?size=' + pageSize, body)
