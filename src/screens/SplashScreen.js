@@ -2,11 +2,9 @@ import { Text, View } from 'react-native'
 import React, { Component } from 'react'
 import Context from '../modules/Context'
 
-import Storage from '../modules/AsyncStorage'
+import Storage, { AUTH_TOKEN, USER_ID } from '../modules/AsyncStorage'
 import { BackendConnector } from '../connectors/BackendConnector'
 import { Styles } from '../Styles'
-
-const AUTH_TOKEN = 'authToken'
 
 class SplashScreen extends Component {
 
@@ -17,9 +15,11 @@ class SplashScreen extends Component {
   async componentDidMount() {
     try {
       const token = await Storage.retrieveItem(AUTH_TOKEN)
+      const userId = await Storage.retrieveItem(USER_ID)
       if (token) {
         await this.props.setToken(token)
         BackendConnector.token = token
+        BackendConnector.userId = userId
         // FOR TESTING
         // await Storage.clear()
         this.props.navigation.navigate('App')

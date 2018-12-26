@@ -1,11 +1,13 @@
 import { AsyncStorage } from 'react-native'
 
-const AUTH_TOKEN = 'authToken'
+export const AUTH_TOKEN = 'authToken'
+export const USER_ID = 'userId'
+
 const storage = () => {
-  const storeItem = async (item) => {
+  const storeItem = async (key, item) => {
     try {
-      console.log('added to async storage')
-      await AsyncStorage.setItem(AUTH_TOKEN, item)
+      console.log('added to async storage', key, ' : ', item)
+      await AsyncStorage.setItem(key, item)
     } catch (error) {
       console.log(error)
     }
