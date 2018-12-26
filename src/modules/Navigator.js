@@ -10,6 +10,7 @@ import { createBottomTabNavigator, createStackNavigator, createSwitchNavigator }
 import JobDetailsScreen from '../screens/job/JobDetailsScreen'
 import AddJobScreen from '../screens/job/AddJobScreen'
 import ReferralScreen from '../screens/referral/ReferralScreen'
+import CreateReferralScreen from '../screens/referral/CreateReferralScreen'
 
 const WikiStackNavigator = createStackNavigator(
   {
@@ -39,6 +40,10 @@ const JobStackNavigator = createStackNavigator(
     Form: {
       screen: wrapScreenWithContext(AddJobScreen),
       navigationOptions: { headerTitle: 'Add Job' },
+    },
+    ReferralForm: {
+      screen: wrapScreenWithContext(CreateReferralScreen),
+      navigationOptions: { headerTitle: 'Add Referral' },
     },
   },
   {

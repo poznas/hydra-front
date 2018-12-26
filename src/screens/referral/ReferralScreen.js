@@ -15,7 +15,7 @@ class ReferralScreen extends Component {
   }
 
   async triggerRefresh() {
-    const response = await BackendConnector.getReferrals()
+    const response = await BackendConnector.getReferrals({})
     this.setState({ referrals: response.content })
   }
 

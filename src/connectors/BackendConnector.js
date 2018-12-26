@@ -5,6 +5,7 @@ import {
   fullPath,
   JOB_ADD_PATH,
   JOB_JOBS_PATH,
+  REFERRAL_ADD_PATH,
   REFERRAL_REFERRALS_PATH,
   WIKI_ADD_PATH,
   WIKI_ENTRIES_PATH,
@@ -14,6 +15,7 @@ import {
 export class BackendConnector {
 
   static token = ''
+  static userId = ''
 
   static getCompanies = () => BackendConnector.getPageable(fullPath(COMPANIES_PATH), {}, 1000)
   static getWikiEntries = (filters) => BackendConnector.getPageable(fullPath(WIKI_ENTRIES_PATH), filters, 1000)
@@ -23,7 +25,8 @@ export class BackendConnector {
   static getJobs = () => BackendConnector.getPageable(fullPath(JOB_JOBS_PATH), {}, 1000)
   static addJob = (body) => BackendConnector.post(fullPath(JOB_ADD_PATH), body)
 
-  static getReferrals = () => BackendConnector.getPageable(fullPath(REFERRAL_REFERRALS_PATH), {}, 1000)
+  static getReferrals = (filters) => BackendConnector.getPageable(fullPath(REFERRAL_REFERRALS_PATH), filters, 1000)
+  static addReferral = (body) => BackendConnector.post(fullPath(REFERRAL_ADD_PATH), body)
 
   static getPageable = (url, body, pageSize) =>
     BackendConnector.get(url + '?size=' + pageSize, body)
