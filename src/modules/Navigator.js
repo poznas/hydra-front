@@ -9,6 +9,7 @@ import wrapScreenWithContext from '../utils/wrapScreenWithContext'
 import { createBottomTabNavigator, createStackNavigator, createSwitchNavigator } from 'react-navigation'
 import JobDetailsScreen from '../screens/job/JobDetailsScreen'
 import AddJobScreen from '../screens/job/AddJobScreen'
+import ReferralScreen from '../screens/referral/ReferralScreen'
 
 const WikiStackNavigator = createStackNavigator(
   {
@@ -45,10 +46,23 @@ const JobStackNavigator = createStackNavigator(
   }
 )
 
+const ReferralStackNavigator = createStackNavigator(
+  {
+    Main: {
+      screen: wrapScreenWithContext(ReferralScreen),
+      navigationOptions: { headerTitle: 'Referral' },
+    },
+  },
+  {
+    initialRouteName: 'Main',
+  }
+)
+
 const TabNavigator = createBottomTabNavigator(
   {
-    Job: JobStackNavigator,
     Wiki: WikiStackNavigator,
+    Job: JobStackNavigator,
+    Referral: ReferralStackNavigator,
   },
   {
     initialRouteName: 'Wiki',
