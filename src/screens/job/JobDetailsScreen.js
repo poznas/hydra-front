@@ -5,6 +5,7 @@ import { Button } from 'react-native-elements'
 import { Styles } from '../../Styles'
 import { formatDate } from '../../utils/DateTimeUtils'
 import { BackendConnector } from '../../connectors/BackendConnector'
+import wrapScreenWithContext from '../../utils/wrapScreenWithContext'
 
 class JobDetailsScreen extends Component {
   constructor() {
@@ -46,17 +47,22 @@ class JobDetailsScreen extends Component {
     )
   }
 
-  renderCreateReferralButton() {
-    if (this.state.enableCreateReferral) {
-      return (
-        <View style={Styles.bottom}>
-          <Button
-            title={'Create referral'}
-            onPress={() => this.props.navigation.navigate('ReferralForm', { job: this.state.job })}/>
-        </View>
-      )
-    }
-    return undefined
+  renderCreateReferralButton = () =>
+    this.state.enableCreateReferral ?
+      <View style={Styles.bottom}>
+        <Button
+          title={'Create referral'}
+          onPress={() => this.props.navigation.navigate('ReferralForm', { job: this.state.job })}/>
+      </View>
+      : undefined
+
+  static navigatorProps = {
+    screen: wrapScreenWithContext(JobDetailsScreen),
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: navigation.getParam('job', {}).title,
+      }
+    },
   }
 }
 
