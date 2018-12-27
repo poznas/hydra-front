@@ -4,7 +4,6 @@ import { BackendConnector } from '../../connectors/BackendConnector'
 import PropTypes from 'prop-types'
 import { Styles } from '../../Styles'
 import { List, ListItem } from 'react-native-elements'
-import ActionButton from 'react-native-action-button'
 
 class ReferralScreen extends Component {
   constructor() {
@@ -33,7 +32,7 @@ class ReferralScreen extends Component {
         subtitle={referral.companyName + ', ' + referral.city}
         rightTitle={getBonusPart(referral)}
         rightTitleStyle={referralBonusPartStyle}
-        onPress={() => this.props.navigation.navigate('Main', { referral: referral })}
+        onPress={() => this.props.navigation.navigate('Detail', { referral: referral })}
       />)
 
   render() {
@@ -44,12 +43,6 @@ class ReferralScreen extends Component {
             {this.renderList(this.state.referrals)}
           </List>
         </ScrollView>
-        <ActionButton
-          buttonColor={'#0067ea'}
-          onPress={() => this.props.navigation.navigate('Main', {
-            onReturn: this.triggerRefresh.bind(this),
-          })}
-        />
       </View>
     )
   }
