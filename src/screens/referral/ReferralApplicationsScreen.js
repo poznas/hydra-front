@@ -26,7 +26,7 @@ class ReferralApplicationsScreen extends Component {
         {this.state.applications.map((app) =>
           <View key={app.applicationId} style={appliersViewStyle}>
             <Avatar rounded medium source={{ uri: app.userImageUrl }}/>
-            <Text style={Styles.subtitleText}>{app.username}</Text>
+            <Text style={Styles.normalText}>{app.username}</Text>
             <SocialIcon type={'github'} onPress={() => Linking.openURL(app.githubUrl)}/>
             <SocialIcon type={'linkedin'} onPress={() => Linking.openURL(app.linkedinUrl)}/>
             <Button title={'CV'} onPress={() => Linking.openURL(app.cvUrl)}/>

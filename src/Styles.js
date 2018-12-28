@@ -22,6 +22,12 @@ export const Styles = StyleSheet.create({
     alignItems: 'stretch',
     padding: 16,
   },
+  scrollDetailsScreen: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+  },
   titleText: {
     fontSize: 20,
   },
