@@ -12,6 +12,7 @@ import AddJobScreen from '../screens/job/AddJobScreen'
 import ReferralScreen from '../screens/referral/ReferralScreen'
 import CreateReferralScreen from '../screens/referral/CreateReferralScreen'
 import ReferralDetailsScreen from '../screens/referral/ReferralDetailsScreen'
+import ReferralApplicationsScreen from '../screens/referral/ReferralApplicationsScreen'
 
 const WikiStackNavigator = createStackNavigator(
   {
@@ -56,6 +57,10 @@ const ReferralStackNavigator = createStackNavigator(
       navigationOptions: { headerTitle: 'Referral' },
     },
     JobDetail: JobDetailsScreen.navigatorProps,
+    Applications: {
+      screen: wrapScreenWithContext(ReferralApplicationsScreen),
+      navigationOptions: { headerTitle: 'Applications' },
+    },
   },
   {
     initialRouteName: 'Main',

@@ -13,5 +13,6 @@ export const JOB_ADD_PATH = '/job/add'
 export const REFERRAL_REFERRALS_PATH = '/referral/referrals'
 export const REFERRAL_ADD_PATH = '/referral/add'
 export const REFERRAL_APPLIERS_PATH = '/referral/appliers'
+export const REFERRAL_APPLICATIONS_PATH = '/referral/applications'
 
 export const fullPath = (path) => [BASE_URL, path].join('')
