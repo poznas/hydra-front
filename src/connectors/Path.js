@@ -14,5 +14,6 @@ export const REFERRAL_REFERRALS_PATH = '/referral/referrals'
 export const REFERRAL_ADD_PATH = '/referral/add'
 export const REFERRAL_APPLIERS_PATH = '/referral/appliers'
 export const REFERRAL_APPLICATIONS_PATH = '/referral/applications'
+export const REFERRAL_APPLY_PATH = '/referral/apply'
 
 export const fullPath = (path) => [BASE_URL, path].join('')

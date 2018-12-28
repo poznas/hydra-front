@@ -8,6 +8,7 @@ import {
   REFERRAL_ADD_PATH,
   REFERRAL_APPLICATIONS_PATH,
   REFERRAL_APPLIERS_PATH,
+  REFERRAL_APPLY_PATH,
   REFERRAL_REFERRALS_PATH,
   WIKI_ADD_PATH,
   WIKI_ENTRIES_PATH,
@@ -31,6 +32,7 @@ export class BackendConnector {
   static addReferral = (body) => BackendConnector.post(fullPath(REFERRAL_ADD_PATH), body)
   static getReferralAppliers = (id) => BackendConnector.get(fullPath(REFERRAL_APPLIERS_PATH) + '/' + id, {})
   static getReferralApplications = (id) => BackendConnector.get(fullPath(REFERRAL_APPLICATIONS_PATH) + '/' + id, {})
+  static applyForReferral = (body) => BackendConnector.post(fullPath(REFERRAL_APPLY_PATH), body)
 
   static getPageable = (url, body, pageSize) =>
     BackendConnector.get(url + '?size=' + pageSize, body)

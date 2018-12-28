@@ -1,34 +1,53 @@
-import React from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { View } from 'react-native'
 
-import { FormInput, FormLabel } from 'react-native-elements'
+import { Button, FormInput, FormLabel } from 'react-native-elements'
 import { Styles } from '../../Styles'
+import { BackendConnector } from '../../connectors/BackendConnector'
 
-class ApplyReferralScreen extends React.Component {
-  constructor(props) {
-    super(props)
+class ApplyReferralScreen extends Component {
+  constructor() {
+    super()
     this.state = {
-      github: '',
-      linkedIn: '',
-      cv: '',
+      githubUrl: '',
+      linkedinUrl: '',
+      cvUrl: '',
+      referralId: 0,
     }
+  }
+
+  async componentDidMount() {
+    const referralId = this.props.navigation.getParam('referralId', {})
+    this.setState({ referralId: referralId })
+  }
+
+  async apply() {
+    await BackendConnector.applyForReferral(this.state)
+    this.props.navigation.state.params.onReturn()
+    this.props.navigation.goBack()
   }
 
   render() {
     return (
       <View style={Styles.formScreen}>
-        <FormLabel>Github nickname</FormLabel>
-        <FormInput onChangeText={(text) => this.setState({ github: text })}/>
+        <FormLabel>Github URL</FormLabel>
+        <FormInput onChangeText={(text) => this.setState({ githubUrl: text })}/>
 
-        <FormLabel>LinkedIn</FormLabel>
-        <FormInput onChangeText={(text) => this.setState({ linkedIn: text })}/>
+        <FormLabel>LinkedIn URL</FormLabel>
+        <FormInput onChangeText={(text) => this.setState({ linkedinUrl: text })}/>
 
-        <FormLabel>CV</FormLabel>
-        <FormInput onChangeText={(text) => this.setState({ cv: text })}/>
+        <FormLabel>CV download URL</FormLabel>
+        <FormInput onChangeText={(text) => this.setState({ cvUrl: text })}/>
 
+        <Button title={'Apply'} onPress={this.apply.bind(this)}/>
       </View>
     )
   }
+}
+
+ApplyReferralScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default ApplyReferralScreen

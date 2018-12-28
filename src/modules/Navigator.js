@@ -13,6 +13,7 @@ import ReferralScreen from '../screens/referral/ReferralScreen'
 import CreateReferralScreen from '../screens/referral/CreateReferralScreen'
 import ReferralDetailsScreen from '../screens/referral/ReferralDetailsScreen'
 import ReferralApplicationsScreen from '../screens/referral/ReferralApplicationsScreen'
+import ApplyReferralScreen from '../screens/referral/ApplyReferralScreen'
 
 const WikiStackNavigator = createStackNavigator(
   {
@@ -60,6 +61,10 @@ const ReferralStackNavigator = createStackNavigator(
     Applications: {
       screen: wrapScreenWithContext(ReferralApplicationsScreen),
       navigationOptions: { headerTitle: 'Applications' },
+    },
+    Apply: {
+      screen: wrapScreenWithContext(ApplyReferralScreen),
+      navigationOptions: { headerTitle: 'Apply' },
     },
   },
   {
