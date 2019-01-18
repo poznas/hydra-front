@@ -6,12 +6,14 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "node_modules/.bin/jest"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "axios-debug": "0.0.4",
-    "expo": "31.0.5",
+    "expo": "30.0.0",
+    "expo-cli": "^2.6.14",
     "prop-types": "^15.6.2",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
@@ -26,12 +28,25 @@
     "uuid": "3.3.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "babel-preset-expo": "5.0.0",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-transform-remove-console": "6.9.4",
+    "babel-preset-expo": "^5.0.0",
     "eslint": "5.9.0",
     "eslint-plugin-babel": "5.3.0",
     "eslint-plugin-react": "7.11.1",
     "eslint-plugin-react-native": "3.5.0",
-    "metro-react-native-babel-preset": "0.48.0"
+    "jest": "^23.6.0",
+    "jest-expo": "^32.0.0",
+    "metro-react-native-babel-preset": "0.48.0",
+    "regenerator-runtime": "^0.13.1"
+  },
+  "jest": {
+    "preset": "jest-expo"
   }
 }
